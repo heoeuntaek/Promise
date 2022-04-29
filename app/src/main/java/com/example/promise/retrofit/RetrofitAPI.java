@@ -51,6 +51,8 @@ public interface RetrofitAPI {
     //group_code로 group_id 불러오기 -get
     //user_login_id로 user객체 불러와서 객체에 user_group주입, 업데이트 -patch
 
+    //스케줄 생성
+
 
 
 //    @FormUrlEncoded
