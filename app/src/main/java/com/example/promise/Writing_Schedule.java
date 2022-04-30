@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,6 +20,8 @@ import com.example.promise.retrofit.RetrofitAPI;
 import com.example.promise.retrofit.Schedule_Model;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -33,7 +36,7 @@ public class Writing_Schedule extends AppCompatActivity {
     //private boolean State = false;
     boolean bool[]=new boolean[120];
     TextView[] tv = new TextView[120];
-    int color_data[]=new int[120];
+    String color_data[]=new String[120];
     EditText scheduleName;
     Long userId;
 
@@ -72,13 +75,13 @@ public class Writing_Schedule extends AppCompatActivity {
                     {
                         bool[finalI] = false;
                         tv[finalI].setBackgroundResource(R.drawable.table_touch_again);
-                        color_data[finalI]=0;
+                        color_data[finalI]="0";
                     }
                     else
                     {
                         bool[finalI] = true;
                         tv[finalI].setBackgroundResource(R.drawable.table_touch);
-                        color_data[finalI]=1;
+                        color_data[finalI]="1";
                     }
                 }
             });
@@ -86,8 +89,14 @@ public class Writing_Schedule extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(),"저장되었습니다.",
-                        Toast.LENGTH_SHORT).show();
+
+                Map<String,Object> map=new HashMap<>();
+                for(int index=0;index<color_data.length;index++){
+                    map.put("color_data["+index+"]=",color_data[index]);
+
+
+                }
+
                 scheduleName = findViewById(R.id.schedule_name);
 
                 String schedule_name = Writing_Schedule.this.scheduleName.getText().toString();
@@ -95,24 +104,38 @@ public class Writing_Schedule extends AppCompatActivity {
                 Schedule_Model schedule_create=new Schedule_Model();
                 schedule_create.setSchedule_name(schedule_name);
 
-                Schedule_Model schedule_created = new Schedule_Model();
-                schedule_created.setSchedule_name(schedule_name);
-
                 RetrofitAPI retrofitAPI = retrofit.create(RetrofitAPI.class);
 
+                Call<Schedule_Model> call3 = retrofitAPI.createSchedule(userId, schedule_create);
 
+                call3.enqueue(new Callback<Schedule_Model>(){
+                    @Override
+                    public void onResponse(Call<Schedule_Model> call, Response<Schedule_Model> response) {
+                        if (!response.isSuccessful()) {
+                            Log.e("연결이 비정상적 : ", "error code : " + response.code());
+                            return;
+                        }
 
+                        Log.d("보낸데이터", schedule_create.toString());
+                        Log.d("연결이 성공적 : ", response.body().toString());
 
+                        Toast.makeText(getApplicationContext(),"저장되었습니다.",
+                                Toast.LENGTH_SHORT).show();
+                    }
 
-
-
-
+                    @Override
+                    public void onFailure(Call<Schedule_Model> call, Throwable t) {
+                        Log.e("연결실패", t.getMessage());
+                    }
+                });
 
 
             }
         });
 
     }
+
+
 }
 
 

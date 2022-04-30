@@ -1,8 +1,12 @@
 package com.example.promise.retrofit;
 
+import java.util.Map;
+
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
+import retrofit2.http.FieldMap;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.PATCH;
 import retrofit2.http.POST;
@@ -52,7 +56,13 @@ public interface RetrofitAPI {
     //user_login_id로 user객체 불러와서 객체에 user_group주입, 업데이트 -patch
 
     //스케줄 생성
+    @POST("api/schedule/{user_id}")
+    Call<Schedule_Model> createSchedule(@Path("user_id") Long user_id,@Body Schedule_Model schedule_model);
 
+    @FormUrlEncoded
+    @POST("api/schedule/{color_data}")
+    Call<Schedule_Model> createSchedule(
+            @FieldMap Map<String, Object> fieldMap);
 
 
 //    @FormUrlEncoded
