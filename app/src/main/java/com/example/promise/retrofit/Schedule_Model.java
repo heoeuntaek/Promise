@@ -29,7 +29,7 @@ public class Schedule_Model {
 
 
     @SerializedName("data")
-    private String[] data;
+    private String[] data=new String[120];
 
     public Long getId() {
         return id;
@@ -52,7 +52,7 @@ public class Schedule_Model {
     }
 
     public void setSchedule_data(String data[]) {
-        for(int i=1;i<data.length-1;i++){
+        for(int i=1;i<=data.length-1;i++){
             this.data[i]=data[i];
         }
     }
