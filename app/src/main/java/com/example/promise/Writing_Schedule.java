@@ -57,6 +57,7 @@ public class Writing_Schedule extends AppCompatActivity {
                 .baseUrl(IPADRESS)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
+        RetrofitAPI retrofitAPI = retrofit.create(RetrofitAPI.class);
 
 
 
@@ -90,25 +91,22 @@ public class Writing_Schedule extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Map<String,Object> map=new HashMap<>();
-                for(int index=0;index<color_data.length;index++){
+                /*Map<String,Object> map=new HashMap<>();
+                for(int index=1;index<color_data.length-1;index++){
                     map.put("color_data["+index+"]=",color_data[index]);
-
-
-                }
+                }*/
 
                 scheduleName = findViewById(R.id.schedule_name);
 
                 String schedule_name = Writing_Schedule.this.scheduleName.getText().toString();
+                Schedule_Model createSchedule = new Schedule_Model();
+                createSchedule.setSchedule_name(schedule_name);
+                createSchedule.setSchedule_data(color_data);
 
-                Schedule_Model schedule_create=new Schedule_Model();
-                schedule_create.setSchedule_name(schedule_name);
 
-                RetrofitAPI retrofitAPI = retrofit.create(RetrofitAPI.class);
+                Call<Schedule_Model> call4 = retrofitAPI.createSchedule(userId, createSchedule);
 
-                Call<Schedule_Model> call3 = retrofitAPI.createSchedule(userId, schedule_create);
-
-                call3.enqueue(new Callback<Schedule_Model>(){
+                call4.enqueue(new Callback<Schedule_Model>(){
                     @Override
                     public void onResponse(Call<Schedule_Model> call, Response<Schedule_Model> response) {
                         if (!response.isSuccessful()) {
@@ -116,7 +114,7 @@ public class Writing_Schedule extends AppCompatActivity {
                             return;
                         }
 
-                        Log.d("보낸데이터", schedule_create.toString());
+                        Log.d("보낸데이터", createSchedule.toString());
                         Log.d("연결이 성공적 : ", response.body().toString());
 
                         Toast.makeText(getApplicationContext(),"저장되었습니다.",

@@ -59,10 +59,15 @@ public interface RetrofitAPI {
     @POST("api/schedule/{user_id}")
     Call<Schedule_Model> createSchedule(@Path("user_id") Long user_id,@Body Schedule_Model schedule_model);
 
-    @FormUrlEncoded
+    /*@FormUrlEncoded
     @POST("api/schedule/{color_data}")
-    Call<Schedule_Model> createSchedule(
-            @FieldMap Map<String, Object> fieldMap);
+    Call<Schedule_Model> setSchedule_data(
+            @FieldMap Map<String, Object> fields);
+    @FormUrlEncoded
+    @POST("posts")
+    Call<Schedule_Model> createPost(@FieldMap Map<String, String> fields);*/
+
+
 
 
 //    @FormUrlEncoded
