@@ -1,4 +1,4 @@
-package com.example.promise;
+package com.example.promise.Intro;
 
 import static com.example.promise.retrofit.IPaddress.IPADRESS;
 
@@ -16,6 +16,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.promise.MainActivity;
+import com.example.promise.R;
 import com.example.promise.retrofit.RetrofitAPI;
 import com.example.promise.retrofit.User_Model;
 import com.kakao.sdk.auth.model.OAuthToken;

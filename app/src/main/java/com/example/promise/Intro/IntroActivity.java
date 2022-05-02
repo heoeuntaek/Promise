@@ -1,4 +1,4 @@
-package com.example.promise.practice;
+package com.example.promise.Intro;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,7 +6,6 @@ import android.os.Handler;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.promise.Kakao_Login_Activity;
 import com.example.promise.R;
 
 

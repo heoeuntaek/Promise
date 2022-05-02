@@ -1,11 +1,8 @@
-package com.example.promise;
+package com.example.promise.schedule;
 
 import static com.example.promise.retrofit.IPaddress.IPADRESS;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,21 +12,20 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.promise.retrofit.Group_Model;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.promise.R;
 import com.example.promise.retrofit.RetrofitAPI;
 import com.example.promise.retrofit.Schedule_Model;
 
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Map;
 
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
-
+import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class Writing_Schedule extends AppCompatActivity {

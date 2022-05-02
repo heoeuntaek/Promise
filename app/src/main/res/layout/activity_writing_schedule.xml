@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#ffffff"
-    tools:context=".Writing_Schedule">
+    tools:context=".schedule.Writing_Schedule">
 
 
     <androidx.appcompat.widget.Toolbar

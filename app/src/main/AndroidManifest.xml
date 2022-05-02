@@ -8,7 +8,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-        android:name=".practice.GlobalApplication"
+        android:name=".Intro.GlobalApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -19,7 +19,7 @@
         android:usesCleartextTraffic="true">
 
         <activity
-            android:name=".Writing_Schedule"
+            android:name=".schedule.Writing_Schedule"
             android:exported="false" />
 
         <activity
@@ -32,13 +32,13 @@
             android:name=".listview2.User_list"
             android:exported="false" />
         <activity
-            android:name=".Checking_Schedule"
+            android:name=".schedule.Checking_Schedule"
             android:exported="false" />
         <activity
-            android:name=".Register"
+            android:name=".Intro.Register"
             android:exported="false" />
         <activity
-            android:name=".practice.IntroActivity"
+            android:name=".Intro.IntroActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -50,19 +50,19 @@
             android:name=".practice.After_Login"
             android:exported="false" />
         <activity
-            android:name=".Management_Schedule"
+            android:name=".schedule.Management_Schedule"
             android:exported="false" />
         <activity
-            android:name=".Management_Group"
+            android:name=".group.Management_Group"
             android:exported="false" />
         <activity
-            android:name=".Participating_Group"
+            android:name=".group.Participating_Group"
             android:exported="false" />
         <activity
-            android:name=".Creating_Group"
+            android:name=".group.Creating_Group"
             android:exported="false" />
         <activity
-            android:name=".Kakao_Login_Activity"
+            android:name=".Intro.Kakao_Login_Activity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

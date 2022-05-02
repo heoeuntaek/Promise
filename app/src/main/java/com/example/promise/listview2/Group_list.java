@@ -15,7 +15,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.promise.Management_Group;
+import com.example.promise.group.Management_Group;
 import com.example.promise.R;
 import com.example.promise.retrofit.Group_Model;
 import com.example.promise.retrofit.RetrofitAPI;
