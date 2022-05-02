@@ -1,8 +1,10 @@
-package com.example.promise;
+package com.example.promise.practice;
+
+import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Bundle;
+import com.example.promise.R;
 
 public class After_Login extends AppCompatActivity {
 

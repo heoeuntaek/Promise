@@ -4,16 +4,16 @@ import com.google.gson.annotations.SerializedName;
 
 public class Group_Model {
     @SerializedName("id")
-    private Long id;
+    public Long id;
 
     @SerializedName("group_code")
-    private String group_code;
+    public String group_code;
 
     @SerializedName("group_name")
-    private String group_name;
+    public String group_name;
 
     @SerializedName("matched_schedule")
-    private String matched_schedule;
+    public String matched_schedule;
 
     public Long getId() {
         return id;

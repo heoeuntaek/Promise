@@ -14,8 +14,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.promise.listview2.User_list;
 import com.example.promise.retrofit.RetrofitAPI;
-import com.example.promise.retrofit.User_Model;
+import com.example.promise.retrofit.User_group_Model;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -28,16 +29,31 @@ public class Management_Group extends AppCompatActivity {
 
 
     Button btn_group_out;
-    private String group_id;
-    TextView groupId;
+
+    TextView groupName;
     TextView groupCode;
     Button btn_list_user;
+    private Long user_id;
+    private Long group_id;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_management_group);
+
+        groupName = findViewById(R.id.group_name_management);
+        groupCode = findViewById(R.id.textview_group_code);
+
+
+        Intent intent = getIntent(); //인텐트객체 선언
+        String group_name = intent.getStringExtra("group_name"); //값 가져오기
+        group_id = intent.getLongExtra("group_id", 0);
+        Log.e("group_id", group_id.toString());
+
+
+        SharedPreferences sharedPref = getApplicationContext().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
+        Long user_id = sharedPref.getLong("user_id", 0);
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(IPADRESS)
@@ -46,68 +62,79 @@ public class Management_Group extends AppCompatActivity {
 
         RetrofitAPI retrofitAPI = retrofit.create(RetrofitAPI.class);
 
-        SharedPreferences sharedPref = getApplicationContext().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
-        String user_login_id = sharedPref.getString("user_login_id", "");
-
-        groupId = findViewById(R.id.group_id);
-
-
-        Call<User_Model> call = retrofitAPI.findByUser_login_id(user_login_id);
-        call.enqueue(new Callback<User_Model>() {
+        //uername으로 user 객체 불러오기 ->user_id 저장
+        Call<User_group_Model> call = retrofitAPI.GetuserGroup(user_id, group_id);
+        call.enqueue(new Callback<User_group_Model>() {
             @Override
-            public void onResponse(Call<User_Model> call, Response<User_Model> response) {
+            public void onResponse(Call<User_group_Model> call, Response<User_group_Model> response) {
                 if (!response.isSuccessful()) {
-                    Log.e("연결이 비정상적 : ", "error code : " + response.code());
+                    Toast.makeText(getApplicationContext(), "연결실패", Toast.LENGTH_SHORT).show();
+                    Log.e("그룹 관리에서 그룹 조회 연결실패", response.message());
                     return;
                 }
-                Log.e("response.body().getGroup_model()", response.body().getGroup_model().getId().toString());
-                group_id = response.body().getGroup_model().getId().toString();
-                groupId.setText(group_id + "번 그룹");
+                User_group_Model user_group_model = response.body();
+                Log.e("user_group_model", user_group_model.toString());
+                String group_code = user_group_model.getGroup_model().getGroup_code();
+
+
+                groupName.setText("그룹이름 : " + group_name);
+                groupCode.setText("그룹코드 : " + group_code);
 
 
             }
 
             @Override
-            public void onFailure(Call<User_Model> call, Throwable t) {
-                Log.e("연결실패", t.getMessage());
+            public void onFailure(Call<User_group_Model> call, Throwable t) {
+
             }
         });
-
-//그룹나가기
+//그룹 삭제
         btn_group_out = findViewById(R.id.btn_group_out);
         btn_group_out.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Call<User_Model> call = retrofitAPI.deleteGroup(group_id, user_login_id);
-                call.enqueue(new Callback<User_Model>() {
+                Call<User_group_Model> call2 = retrofitAPI.deleteUserGroup(user_id, group_id);
+                call2.enqueue(new Callback<User_group_Model>() {
                     @Override
-                    public void onResponse(Call<User_Model> call, Response<User_Model> response) {
+                    public void onResponse(Call<User_group_Model> call, Response<User_group_Model> response) {
                         if (!response.isSuccessful()) {
-                            Log.e("연결이 비정상적 : ", "error code : " + response.code());
+                            Toast.makeText(getApplicationContext(), "연결실패", Toast.LENGTH_SHORT).show();
+                            Log.e("그룹 관리에서 삭제 실패", response.message());
                             return;
                         }
-                        Log.e("response.body()", response.body().toString());
-                        Toast.makeText(getApplicationContext(), "그룹 탈퇴 성공!", Toast.LENGTH_SHORT).show();
+                        User_group_Model user_group_model = response.body();
+                        Log.e("user_group_model 삭제", user_group_model.toString());
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                         startActivity(intent);
-
                     }
 
                     @Override
-                    public void onFailure(Call<User_Model> call, Throwable t) {
-                        Log.e("연결실패", t.getMessage());
+                    public void onFailure(Call<User_group_Model> call, Throwable t) {
+
+                        Log.e("삭제 실패", t.getMessage());
+
+
                     }
                 });
+
+
             }
+
         });
+
+        //그룹원 조회
 
         btn_list_user = findViewById(R.id.btn_list_user);
         btn_list_user.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
+                Intent intent = new Intent(getApplicationContext(), User_list.class);
+                intent.putExtra("user_id", user_id);
+                intent.putExtra("group_id", group_id);
+                startActivity(intent);
             }
+
+
         });
 
 

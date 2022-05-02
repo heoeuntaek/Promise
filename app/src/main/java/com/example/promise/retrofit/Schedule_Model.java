@@ -46,7 +46,7 @@ public class Schedule_Model {
     }
 
     public String[] getSchedule_data() {
-       return data;
+        return data;
     }
 
     public void setSchedule_data(String data[]) {

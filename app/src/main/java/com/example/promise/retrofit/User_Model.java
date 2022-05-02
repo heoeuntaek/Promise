@@ -13,8 +13,7 @@ public class User_Model {
     private String user_pass;
     @SerializedName("user_name")
     private String user_name;
-    @SerializedName("group_tbl")
-    private Group_Model group_model;
+
 
     @Override
     public String toString() {
@@ -23,7 +22,6 @@ public class User_Model {
                 ", user_login_id='" + user_login_id + '\'' +
                 ", user_pass='" + user_pass + '\'' +
                 ", user_name='" + user_name + '\'' +
-                ", group_model=" + group_model +
                 '}';
     }
 
@@ -57,13 +55,5 @@ public class User_Model {
 
     public void setUser_name(String user_name) {
         this.user_name = user_name;
-    }
-
-    public Group_Model getGroup_model() {
-        return group_model;
-    }
-
-    public void setGroup_model(Group_Model group_model) {
-        this.group_model = group_model;
     }
 }

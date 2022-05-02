@@ -47,6 +47,15 @@ public class Kakao_Login_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kakao_login);
 
+//        Button list_view = findViewById(R.id.listview_btn);
+//        list_view.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(Kakao_Login_Activity.this, MainActivity3.class);
+//                startActivity(intent);
+//            }
+//        });
+
 
         loginButton = findViewById(R.id.login);
 

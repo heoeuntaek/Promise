@@ -23,11 +23,11 @@ public class Management_Schedule extends AppCompatActivity {
             }
         });
 
-        Button btn2 = (Button) findViewById(R.id.btn_check_schedule);
+        Button btn2 = (Button) findViewById(R.id.btn_check_schedule_list);
         btn2.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                Intent intent = new Intent(getApplicationContext(), List_Schedule.class);
+                Intent intent = new Intent(getApplicationContext(), Checking_Schedule.class);
                 startActivity(intent);
             }
         });
