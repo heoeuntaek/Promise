@@ -27,7 +27,7 @@ public class Management_Schedule extends AppCompatActivity {
         btn2.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                Intent intent = new Intent(getApplicationContext(), Checking_Schedule.class);
+                Intent intent = new Intent(getApplicationContext(), List_Schedule.class);
                 startActivity(intent);
             }
         });

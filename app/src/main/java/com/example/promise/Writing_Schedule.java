@@ -119,6 +119,7 @@ public class Writing_Schedule extends AppCompatActivity {
 
                         Toast.makeText(getApplicationContext(),"저장되었습니다.",
                                 Toast.LENGTH_SHORT).show();
+
                     }
 
                     @Override

@@ -18,6 +18,9 @@
         android:theme="@style/Theme.Promise"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".List_Schedule"
+            android:exported="false" />
+        <activity
             android:name=".Checking_Schedule"
             android:exported="false" />
         <activity

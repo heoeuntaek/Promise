@@ -29,11 +29,9 @@ public class Schedule_Model {
 
 
     @SerializedName("data")
-    private String[] data=new String[120];
+    public String[] data=new String[120];
 
-    public Long getId() {
-        return id;
-    }
+    public Long getId() { return id; }
 
     public void setId(Long id) {
         this.id = id;
