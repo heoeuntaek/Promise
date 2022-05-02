@@ -104,9 +104,12 @@ public class Writing_Schedule extends AppCompatActivity {
                 createSchedule.setSchedule_data(color_data);
 
 
-                Call<Schedule_Model> call4 = retrofitAPI.createSchedule(userId, createSchedule);
 
-                call4.enqueue(new Callback<Schedule_Model>(){
+                HashMap<String, Object> param = new HashMap<String, Object>();
+                param.put("schedule_name",schedule_name);
+                param.put("color_data",color_data);
+
+                retrofitAPI.createSchedule(param).enqueue(new Callback<Schedule_Model>(){
                     @Override
                     public void onResponse(Call<Schedule_Model> call, Response<Schedule_Model> response) {
                         if (!response.isSuccessful()) {

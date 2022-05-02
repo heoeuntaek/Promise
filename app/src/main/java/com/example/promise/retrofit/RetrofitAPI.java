@@ -1,5 +1,6 @@
 package com.example.promise.retrofit;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import retrofit2.Call;
@@ -11,6 +12,7 @@ import retrofit2.http.GET;
 import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 
 public interface RetrofitAPI {
@@ -58,6 +60,15 @@ public interface RetrofitAPI {
     //스케줄 생성
     @POST("api/schedule/{user_id}")
     Call<Schedule_Model> createSchedule(@Path("user_id") Long user_id,@Body Schedule_Model schedule_model);
+
+    /*@GET("api/data")
+    Call<Schedule_Model> getData(@Query("shcedule_name") String schedule_name, @Query("data") String data);*/
+
+    @FormUrlEncoded
+    @POST("api/data")
+    Call<Schedule_Model> createSchedule(@FieldMap HashMap<String, Object> param);
+
+
 
 
     /*@FormUrlEncoded
