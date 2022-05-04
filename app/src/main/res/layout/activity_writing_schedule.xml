@@ -1286,7 +1286,7 @@
 
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btn_schedule_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
@@ -1305,8 +1305,8 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:hint="스케줄이름 입력"
-        app:layout_constraintBottom_toBottomOf="@+id/button"
-        app:layout_constraintEnd_toEndOf="@+id/button"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_schedule_register"
+        app:layout_constraintEnd_toEndOf="@+id/btn_schedule_register"
         app:layout_constraintStart_toStartOf="parent" />
 
 
