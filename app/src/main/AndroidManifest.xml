@@ -32,7 +32,7 @@
             android:name=".listview2.User_list"
             android:exported="false" />
         <activity
-            android:name=".schedule.Checking_Schedule"
+            android:name=".schedule.Get_Schedule"
             android:exported="false" />
         <activity
             android:name=".Intro.Register"

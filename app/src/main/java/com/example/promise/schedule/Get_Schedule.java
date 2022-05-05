@@ -4,10 +4,12 @@ import static com.example.promise.retrofit.IPaddress.IPADRESS;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.promise.R;
@@ -22,7 +24,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class Checking_Schedule extends AppCompatActivity {
+public class Get_Schedule extends AppCompatActivity {
 
     private Long user_id;
     private Long schedule_id;
@@ -43,9 +45,10 @@ public class Checking_Schedule extends AppCompatActivity {
                 .build();
         RetrofitAPI retrofitAPI = retrofit.create(RetrofitAPI.class);
 
-        schedule_id = 1L;
+        schedule_id = 3L;
         Call<Schedule_Model> call = retrofitAPI.GetSchedule(user_id, schedule_id);
         call.enqueue(new Callback<Schedule_Model>() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onResponse(Call<Schedule_Model> call, Response<Schedule_Model> response) {
                 if(!response.isSuccessful()){
@@ -53,12 +56,25 @@ public class Checking_Schedule extends AppCompatActivity {
                     Log.e("실패", response.code()+"");
                 }
                 Schedule_Model schedule_model = response.body();
-                Log.e("성공", schedule_model.toString());
+                String schedule_data = schedule_model.schedule_data;
+//                Log.e("성공", schedule_model.toString());
                 Log.e("타입",schedule_model.schedule_data.getClass().getSimpleName());
 
-                String[] colordata = schedule_model.schedule_data.split(", ");
-                Log.e("colordata", Arrays.toString(colordata));
-                Log.e("colordata.getClass().getSimpleName();",colordata.getClass().getSimpleName());
+
+                String values = schedule_data;
+                Long[] colordata = Arrays.stream(values.split(", "))
+                        .map(String::trim)
+                        .map(Long::valueOf)
+                        .toArray(Long[]::new);//Converting String array to Long array
+
+                Log.e("성공", Arrays.toString(colordata));
+
+
+
+//                Long[] colordata = schedule_model.schedule_data.split(",");
+//                Log.e("colordata", Arrays.toString(colordata));
+//                Log.e("colordata.getClass().getSimpleName();",colordata.getClass().getSimpleName());
+//                Log.e("colordata[0]",colordata[colordata.length-1]);
 
 
             }

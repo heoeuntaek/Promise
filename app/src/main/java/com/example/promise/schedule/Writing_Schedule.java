@@ -17,6 +17,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.promise.R;
 import com.example.promise.retrofit.RetrofitAPI;
 import com.example.promise.retrofit.Schedule_Model;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.util.Arrays;
 
@@ -31,7 +33,7 @@ public class Writing_Schedule extends AppCompatActivity {
     //private boolean State = false;
     boolean bool[] = new boolean[120]; //true or false
     TextView[] textViews = new TextView[120];
-    String color_data[] = new String[120];
+    Long color_data[] = new Long[120];
     EditText scheduleName;
     Long user_id;
     String schedule_data;
@@ -43,7 +45,6 @@ public class Writing_Schedule extends AppCompatActivity {
         setContentView(R.layout.activity_writing_schedule);
         Button btn_schedule_register = (Button) findViewById(R.id.btn_schedule_register);
 
-        String[] null_data = color_data;
         // 배열의 값 일괄 선언
         Arrays.fill(bool, false);
 
@@ -51,9 +52,12 @@ public class Writing_Schedule extends AppCompatActivity {
 
         user_id = sharedPref.getLong("user_id", 0);
 
+
+        Gson gson = new GsonBuilder() .setLenient() .create();
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(IPADRESS)
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
         RetrofitAPI retrofitAPI = retrofit.create(RetrofitAPI.class);
 
@@ -66,6 +70,12 @@ public class Writing_Schedule extends AppCompatActivity {
         TextView[] nullText = textViews;
 
 
+        // color_data 초기화
+        for (int i = 1; i <= color_data.length - 1; i++) {
+            color_data[i] = 0L;
+        }
+
+
         for (int i = 1; i <= textViews.length - 1; i++) {
             int finalI = i;
             textViews[i].setOnClickListener(new View.OnClickListener() {
@@ -74,11 +84,11 @@ public class Writing_Schedule extends AppCompatActivity {
                     if (bool[finalI]) { // 데이터가 있다면?
                         bool[finalI] = false;
                         textViews[finalI].setBackgroundResource(R.drawable.table_touch_again);
-                        Writing_Schedule.this.color_data[finalI] = "0";
+                        Writing_Schedule.this.color_data[finalI] = 0L;
                     } else {
                         bool[finalI] = true;
                         textViews[finalI].setBackgroundResource(R.drawable.table_touch);
-                        Writing_Schedule.this.color_data[finalI] = "1";
+                        Writing_Schedule.this.color_data[finalI] = 1L;
                     }
                 }
             });
@@ -102,7 +112,8 @@ public class Writing_Schedule extends AppCompatActivity {
                     String schedule_data = Arrays.toString(color_data);
                     schedule_model.setSchedule_data(schedule_data);
 
-                    Log.e("color_data", schedule_data);
+                    Log.e("schedule_data", schedule_data);
+                    Log.e("schedule_model", schedule_model.toString());
 
 
                     Call<Schedule_Model> call = retrofitAPI.createSchedule(user_id, schedule_model);
