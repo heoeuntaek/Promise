@@ -30,6 +30,8 @@ public class Management_Schedule extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 Intent intent = new Intent(getApplicationContext(), Schedule_List.class);
+                int save = 2;
+                intent.putExtra("save", save);
                 startActivity(intent);
             }
         });

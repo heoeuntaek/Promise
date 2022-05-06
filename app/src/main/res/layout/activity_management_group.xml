@@ -40,7 +40,7 @@
         android:id="@+id/btn_match_schedule"
         android:layout_width="206dp"
         android:layout_height="50dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="24dp"
         android:background="@drawable/roundbutton"
         android:backgroundTint="#4F2196F3"
         android:elevation="10dp"

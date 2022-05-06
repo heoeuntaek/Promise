@@ -75,8 +75,22 @@ public interface RetrofitAPI {
     @GET("api/{user_id}/{schedule_id}")
     Call<Schedule_Model> GetSchedule(@Path("user_id") Long user_id, @Path("schedule_id") Long schedule_id);
 
+    //한 유저에 대한 스케줄 리스트
     @GET("api/schedules/{user_id}")
     Call<List<Schedule_Model>> schedule_List(@Path("user_id") Long user_id);
+
+    //스케줄 공유
+    @PATCH("api/schedule/{group_id}/{schedule_id}/{user_id}")
+    Call<Schedule_Model> UpdateScheduleWithGroup(@Path("group_id") Long group_id, @Path("schedule_id") Long schedule_id, @Path("user_id") Long user_id);
+
+    // 공유스케줄 조회
+    @GET("api/schedule/{user_id}/{group_id}")
+    Call<Schedule_Model>GetScheduleWithGroup(@Path("user_id") Long user_id, @Path("group_id") Long group_id);
+
+    // 그룹 id로 스케줄리스트
+    @GET("api/schedules/group/{group_id}")
+    Call<List<Schedule_Model>>GetScheduleListWithGroup(@Path("group_id") Long group_id);
+
 
     /*@GET("api/data")
     Call<Schedule_Model> getData(@Query("shcedule_name") String schedule_name, @Query("data") String data);*/

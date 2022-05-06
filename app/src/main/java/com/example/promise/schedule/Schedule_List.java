@@ -43,6 +43,13 @@ public class Schedule_List extends AppCompatActivity {
         SharedPreferences sharedPref = getApplicationContext().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
         user_id = sharedPref.getLong("user_id", 0);
 
+        Intent intent = getIntent();
+        int save = intent.getIntExtra("save", 5);
+        Long group_id = intent.getLongExtra("group_id", 0);
+
+
+        Log.e("save", save + "");
+
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(IPADRESS)
@@ -52,7 +59,7 @@ public class Schedule_List extends AppCompatActivity {
         RetrofitAPI retrofitAPI = retrofit.create(RetrofitAPI.class);
 
         //uername으로 user 객체 불러오기 ->user_id 저장
-        Call<List<Schedule_Model>> call = retrofitAPI.schedule_List(user_id);
+        Call<List<Schedule_Model>> call = retrofitAPI.schedule_List(this.user_id);
         call.enqueue(new Callback<List<Schedule_Model>>() {
             @Override
             public void onResponse(Call<List<Schedule_Model>> call, Response<List<Schedule_Model>> response) {
@@ -77,6 +84,9 @@ public class Schedule_List extends AppCompatActivity {
 
                         Intent intent = new Intent(getApplicationContext(), Get_Schedule.class);
                         intent.putExtra("schedule_id", selectItem.id);
+                        intent.putExtra("save", save);
+                        intent.putExtra("group_id", group_id);
+
                         startActivity(intent);
                         finish();
 

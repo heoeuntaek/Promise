@@ -22,6 +22,9 @@
         android:theme="@style/Theme.Promise"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".group.Schedule_Match"
+            android:exported="false" />
+        <activity
             android:name=".schedule.Schedule_List"
             android:exported="false" />
         <activity

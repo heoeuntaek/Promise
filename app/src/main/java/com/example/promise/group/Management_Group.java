@@ -18,7 +18,10 @@ import com.example.promise.MainActivity;
 import com.example.promise.R;
 import com.example.promise.listview2.User_list;
 import com.example.promise.retrofit.RetrofitAPI;
+import com.example.promise.retrofit.Schedule_Model;
 import com.example.promise.retrofit.User_group_Model;
+import com.example.promise.schedule.Get_Schedule;
+import com.example.promise.schedule.Schedule_List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -64,6 +67,64 @@ public class Management_Group extends AppCompatActivity {
 
         RetrofitAPI retrofitAPI = retrofit.create(RetrofitAPI.class);
 
+        //스케줄 공유
+        Button btn_share_schedule = findViewById(R.id.btn_share_schedule);
+        btn_share_schedule.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Management_Group.this, Schedule_List.class);
+                int save = 1;
+                intent.putExtra("save", save);
+                intent.putExtra("group_id", group_id);
+                startActivity(intent);
+
+            }
+        });
+
+        //공유 스케줄 조회
+        Button btn_check_schedule = findViewById(R.id.btn_check_schedule);
+        btn_check_schedule.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Call<Schedule_Model> call = retrofitAPI.GetScheduleWithGroup(group_id, user_id);
+                call.enqueue(new Callback<Schedule_Model>() {
+                    @Override
+                    public void onResponse(Call<Schedule_Model> call, Response<Schedule_Model> response) {
+                        if (!response.isSuccessful()) {
+                            Toast.makeText(Management_Group.this, "공유스케줄 조회 실패", Toast.LENGTH_SHORT).show();
+                            Log.e("공유스케줄 조회 실패", response.code() + "");
+                        }
+                        Log.e("공유스케줄 조회 성공", response.body().toString());
+                        Schedule_Model schedule_model = response.body();
+                        Long schedule_id = schedule_model.getId();
+
+                        Intent intent = new Intent(Management_Group.this, Get_Schedule.class);
+                        intent.putExtra("schedule_id", schedule_id);
+                        startActivity(intent);
+                    }
+
+                    @Override
+                    public void onFailure(Call<Schedule_Model> call, Throwable t) {
+                        Toast.makeText(Management_Group.this, "연결 실패", Toast.LENGTH_SHORT).show();
+                        Log.e("연결 실패", t.getMessage());
+
+                    }
+                });
+            }
+        });
+
+        //스케줄 매칭
+        Button btn_match_schedule = findViewById(R.id.btn_match_schedule);
+        btn_match_schedule.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Management_Group.this, Schedule_Match.class);
+                intent.putExtra("group_id", group_id);
+                startActivity(intent);
+            }
+        });
+
+        //사용자 리스트 조회
         //uername으로 user 객체 불러오기 ->user_id 저장
         Call<User_group_Model> call = retrofitAPI.GetuserGroup(user_id, group_id);
         call.enqueue(new Callback<User_group_Model>() {

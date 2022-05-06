@@ -17,6 +17,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.promise.R;
+import com.example.promise.group.Management_Group;
 import com.example.promise.retrofit.RetrofitAPI;
 import com.example.promise.retrofit.Schedule_Model;
 
@@ -53,6 +54,57 @@ public class Get_Schedule extends AppCompatActivity {
                 .build();
         RetrofitAPI retrofitAPI = retrofit.create(RetrofitAPI.class);
 
+        Button btn_save = findViewById(R.id.btn_save);
+
+        Intent intent = getIntent();
+        int save = intent.getIntExtra("save", 5);
+
+        schedule_id = intent.getLongExtra("schedule_id", 0);
+
+        Log.e("save", save + "");
+
+        btn_save.setVisibility(View.INVISIBLE);
+
+        if (save == 1) { //그룹에서 온 경우
+            btn_save.setVisibility(View.VISIBLE);
+        }
+
+
+        btn_save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Long group_id = intent.getLongExtra("group_id", 0);
+
+                Call<Schedule_Model> call = retrofitAPI.UpdateScheduleWithGroup(group_id, schedule_id, user_id);
+                call.enqueue(new Callback<Schedule_Model>() {
+                    @Override
+                    public void onResponse(Call<Schedule_Model> call, Response<Schedule_Model> response) {
+                        if (!response.isSuccessful()) {
+                            Toast.makeText(getApplicationContext(), "스케줄 저장 실패", Toast.LENGTH_SHORT).show();
+                            Log.e("스케줄 공유 실패", response.code() + "");
+                            return;
+                        }
+
+                        Log.e("스케줄 공유 성공", response.body().toString());
+                        Toast.makeText(getApplicationContext(), "스케줄이 공유되었습니다.", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(Get_Schedule.this, Management_Group.class);
+                        intent.putExtra("group_id", group_id);
+                        startActivity(intent);
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<Schedule_Model> call, Throwable t) {
+                        Toast.makeText(getApplicationContext(), "연결실패", Toast.LENGTH_SHORT).show();
+                        Log.e("연결실패", t.getMessage());
+
+                    }
+                });
+
+
+            }
+        });
+
 
         for (int i = 1; i <= textViews.length - 1; i++) {
             int getID = getResources().getIdentifier("text" + i, "id", "com.example.promise");
@@ -60,8 +112,7 @@ public class Get_Schedule extends AppCompatActivity {
         }
         TextView[] nullText = textViews;
 
-        Intent intent = getIntent();
-        schedule_id = intent.getLongExtra("schedule_id", 0);
+
         Log.e("schedule_id", schedule_id.toString());
 
         Call<Schedule_Model> call = retrofitAPI.GetSchedule(user_id, schedule_id);
@@ -123,8 +174,8 @@ public class Get_Schedule extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), Schedule_List.class);
-                startActivity(intent);
 
+                startActivity(intent);
 
             }
         });
