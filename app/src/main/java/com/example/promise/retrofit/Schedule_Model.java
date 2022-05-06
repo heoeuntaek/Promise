@@ -4,14 +4,14 @@ import com.google.gson.annotations.SerializedName;
 
 public class Schedule_Model {
 
-    @SerializedName("schedule_id")
-    private Long id;
+    @SerializedName("id")
+    public Long id;
 
     @SerializedName("schedule_data")
     public String schedule_data;
 
     @SerializedName("schedule_name")
-    private String schedule_name;
+    public String schedule_name;
 
     @SerializedName("user")
     User_Model user_model;

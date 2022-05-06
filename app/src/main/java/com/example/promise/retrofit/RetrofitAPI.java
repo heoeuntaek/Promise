@@ -71,8 +71,12 @@ public interface RetrofitAPI {
     @POST("api/schedule/{user_id}")
     Call<Schedule_Model> createSchedule(@Path("user_id") Long user_id,@Body Schedule_Model schedule_model);
 
+    //스케줄 조회
     @GET("api/{user_id}/{schedule_id}")
     Call<Schedule_Model> GetSchedule(@Path("user_id") Long user_id, @Path("schedule_id") Long schedule_id);
+
+    @GET("api/schedules/{user_id}")
+    Call<List<Schedule_Model>> schedule_List(@Path("user_id") Long user_id);
 
     /*@GET("api/data")
     Call<Schedule_Model> getData(@Query("shcedule_name") String schedule_name, @Query("data") String data);*/

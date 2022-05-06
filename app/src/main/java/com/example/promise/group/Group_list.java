@@ -1,4 +1,4 @@
-package com.example.promise.listview2;
+package com.example.promise.group;
 
 import static com.example.promise.retrofit.IPaddress.IPADRESS;
 
@@ -15,8 +15,8 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.promise.group.Management_Group;
 import com.example.promise.R;
+import com.example.promise.listview2.GroupAdapter;
 import com.example.promise.retrofit.Group_Model;
 import com.example.promise.retrofit.RetrofitAPI;
 

@@ -29,7 +29,7 @@ public class Management_Schedule extends AppCompatActivity {
         btn2.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                Intent intent = new Intent(getApplicationContext(), Get_Schedule.class);
+                Intent intent = new Intent(getApplicationContext(), Schedule_List.class);
                 startActivity(intent);
             }
         });

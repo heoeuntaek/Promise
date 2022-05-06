@@ -16,7 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.promise.group.Creating_Group;
 import com.example.promise.group.Participating_Group;
-import com.example.promise.listview2.Group_list;
+import com.example.promise.group.Group_list;
 import com.example.promise.retrofit.RetrofitAPI;
 import com.example.promise.retrofit.User_Model;
 import com.example.promise.schedule.Management_Schedule;

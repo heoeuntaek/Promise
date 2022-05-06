@@ -3,10 +3,14 @@ package com.example.promise.schedule;
 import static com.example.promise.retrofit.IPaddress.IPADRESS;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
@@ -26,13 +30,17 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Get_Schedule extends AppCompatActivity {
 
+    private boolean bool[] = new boolean[120]; //true or false
+    private TextView[] textViews = new TextView[120];
+    private Long color_data[] = new Long[120];
+
     private Long user_id;
     private Long schedule_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_checking_schedule);
+        setContentView(R.layout.activity_get_schedule);
 
         //user_id 가져오기
         SharedPreferences sharedPref = getApplicationContext().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
@@ -45,30 +53,54 @@ public class Get_Schedule extends AppCompatActivity {
                 .build();
         RetrofitAPI retrofitAPI = retrofit.create(RetrofitAPI.class);
 
-        schedule_id = 3L;
+
+        for (int i = 1; i <= textViews.length - 1; i++) {
+            int getID = getResources().getIdentifier("text" + i, "id", "com.example.promise");
+            textViews[i] = (TextView) findViewById(getID); // tv[i]에 text1, text2, text3, text4,
+        }
+        TextView[] nullText = textViews;
+
+        Intent intent = getIntent();
+        schedule_id = intent.getLongExtra("schedule_id", 0);
+        Log.e("schedule_id", schedule_id.toString());
+
         Call<Schedule_Model> call = retrofitAPI.GetSchedule(user_id, schedule_id);
         call.enqueue(new Callback<Schedule_Model>() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onResponse(Call<Schedule_Model> call, Response<Schedule_Model> response) {
-                if(!response.isSuccessful()){
+                if (!response.isSuccessful()) {
                     Toast.makeText(getApplicationContext(), "실패", Toast.LENGTH_SHORT).show();
-                    Log.e("실패", response.code()+"");
+                    Log.e("실패", response.code() + "");
                 }
                 Schedule_Model schedule_model = response.body();
                 String schedule_data = schedule_model.schedule_data;
 //                Log.e("성공", schedule_model.toString());
-                Log.e("타입",schedule_model.schedule_data.getClass().getSimpleName());
+                Log.e("타입", schedule_model.schedule_data.getClass().getSimpleName());
 
 
-                String values = schedule_data;
-                Long[] colordata = Arrays.stream(values.split(", "))
+                //문자열에서 [, ] 제거
+                schedule_data = schedule_data.replace("[", "");
+                schedule_data = schedule_data.replace("]", "");
+                Log.e("schedule_data", schedule_data);
+
+                //문자열 -> 배열로 전환
+                color_data = Arrays.stream(schedule_data.split(", "))
                         .map(String::trim)
                         .map(Long::valueOf)
                         .toArray(Long[]::new);//Converting String array to Long array
 
-                Log.e("성공", Arrays.toString(colordata));
+                Log.e("colordata", Arrays.toString(color_data));
+                Log.e("colordata.getClass().getSimpleName()", color_data.getClass().getSimpleName());
 
+                for (int i = 1; i <= textViews.length - 1; i++) {
+                    int finalI = i;
+                    if (color_data[finalI] == 0) {
+                        textViews[finalI].setBackgroundResource(R.drawable.table_touch_again);
+                    } else if (color_data[finalI] == 1L) {
+                        textViews[finalI].setBackgroundResource(R.drawable.table_touch);
+                    }
+                }
 
 
 //                Long[] colordata = schedule_model.schedule_data.split(",");
@@ -82,6 +114,17 @@ public class Get_Schedule extends AppCompatActivity {
             @Override
             public void onFailure(Call<Schedule_Model> call, Throwable t) {
                 Toast.makeText(getApplicationContext(), "실패", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+        Button btn_back = (Button) findViewById(R.id.btn_back);
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Schedule_List.class);
+                startActivity(intent);
+
 
             }
         });

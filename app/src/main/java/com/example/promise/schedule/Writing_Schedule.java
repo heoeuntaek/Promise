@@ -3,6 +3,7 @@ package com.example.promise.schedule;
 import static com.example.promise.retrofit.IPaddress.IPADRESS;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,6 +22,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.util.Arrays;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -31,9 +33,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Writing_Schedule extends AppCompatActivity {
     //private boolean State = false;
-    boolean bool[] = new boolean[120]; //true or false
-    TextView[] textViews = new TextView[120];
-    Long color_data[] = new Long[120];
+    private boolean bool[] = new boolean[120]; //true or false
+    private TextView[] textViews = new TextView[120];
+    private Long color_data[] = new Long[120];
+    List<Long> color_data_list;
     EditText scheduleName;
     Long user_id;
     String schedule_data;
@@ -71,9 +74,12 @@ public class Writing_Schedule extends AppCompatActivity {
 
 
         // color_data 초기화
-        for (int i = 1; i <= color_data.length - 1; i++) {
+        for (int i = 0; i <= color_data.length - 1; i++) {
             color_data[i] = 0L;
         }
+
+        //color_data_list 초기화
+
 
 
         for (int i = 1; i <= textViews.length - 1; i++) {
@@ -93,6 +99,7 @@ public class Writing_Schedule extends AppCompatActivity {
                 }
             });
         }
+
         btn_schedule_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -128,6 +135,9 @@ public class Writing_Schedule extends AppCompatActivity {
                                 Schedule_Model scheduleModel_saved = response.body();
                                 Log.e("스케줄 저장 성공", scheduleModel_saved.toString());
 
+                                Intent intent = new Intent(Writing_Schedule.this, Management_Schedule.class);
+                                startActivity(intent);
+
 
                             }
                         }
@@ -146,7 +156,7 @@ public class Writing_Schedule extends AppCompatActivity {
 //                        param.put("color_data", Writing_Schedule.this.color_data);
 
 
-                    ;
+
 
 
 //                    retrofitAPI.createSchedule(param).enqueue(new Callback<Schedule_Model>() {
