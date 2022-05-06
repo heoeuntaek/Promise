@@ -14,18 +14,11 @@ public class Schedule_Model {
     private String schedule_name;
 
     @SerializedName("user")
-    User_Model user_model;
+    private User_Model user_model;
 
-    @Override
-    public String
-    toString() {
-        return "Schedule_Model{" +
-                "id=" + id +
-                ", schedule_data='" + schedule_data + '\'' +
-                ", schedule_name='" + schedule_name + '\'' +
-                ", user_model=" + user_model +
-                '}';
-    }
+    @SerializedName("group_tbl")
+    private Group_Model group_model;
+
 
     public Long getId() {
         return id;
@@ -59,21 +52,23 @@ public class Schedule_Model {
         this.user_model = user_model;
     }
 
-    /*private String data[];
-    private String name;
-
-    public Schedule_Model(String name,String data[]){
-        this.name=name;
-        for(int i=1;i<data.length-1;i++){
-            this.data[i]=data[i];
-        }
+    public Group_Model getGroup_model() {
+        return group_model;
     }
 
-    public String getName(){
-        return name;
+    public void setGroup_model(Group_Model group_model) {
+        this.group_model = group_model;
     }
 
+    @Override
+    public String toString() {
+        return "Schedule_Model{" +
+                "id=" + id +
+                ", schedule_data='" + schedule_data + '\'' +
+                ", schedule_name='" + schedule_name + '\'' +
+                ", user_model=" + user_model +
+                ", group_model=" + group_model +
+                '}';
+    }
 
-
-} */
 }
