@@ -105,7 +105,7 @@ public class Management_Group extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<Schedule_Model> call, Throwable t) {
-                        Toast.makeText(Management_Group.this, "연결 실패", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Management_Group.this, "공유된 스케줄이 없습니다", Toast.LENGTH_SHORT).show();
                         Log.e("연결 실패", t.getMessage());
 
                     }

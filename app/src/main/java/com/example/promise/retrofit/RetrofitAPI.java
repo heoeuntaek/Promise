@@ -91,6 +91,13 @@ public interface RetrofitAPI {
     @GET("api/schedules/group/{group_id}")
     Call<List<Schedule_Model>>GetScheduleListWithGroup(@Path("group_id") Long group_id);
 
+    //스케줄 매칭 -> 그룹에 데이터 저장
+    @PATCH("api/group/matchedSchedule/{group_id}")
+    Call<Group_Model>UpdateMatchedSchedule(@Path("group_id") Long group_id, @Body Group_Model group_model);
+
+    @GET("api/group/matchedSchedule/{group_id}")
+    Call<Group_Model>GetMatchedSchedule(@Path("group_id") Long group_id);
+
 
     /*@GET("api/data")
     Call<Schedule_Model> getData(@Query("shcedule_name") String schedule_name, @Query("data") String data);*/

@@ -18,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.promise.R;
 import com.example.promise.group.Management_Group;
+import com.example.promise.retrofit.Group_Model;
 import com.example.promise.retrofit.RetrofitAPI;
 import com.example.promise.retrofit.Schedule_Model;
 
@@ -37,6 +38,7 @@ public class Get_Schedule extends AppCompatActivity {
 
     private Long user_id;
     private Long schedule_id;
+    private TextView textview_match;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,9 +67,17 @@ public class Get_Schedule extends AppCompatActivity {
 
         btn_save.setVisibility(View.INVISIBLE);
 
+        TextView textview_match = findViewById(R.id.textview_match);
+        textview_match.setVisibility(View.INVISIBLE);
+
         if (save == 1) { //그룹에서 온 경우
             btn_save.setVisibility(View.VISIBLE);
         }
+//        스케줄매칭에서 온 경우
+        if (save == 3) {
+            textview_match.setVisibility(View.VISIBLE);
+        }
+        Long group_id = intent.getLongExtra("group_id", 0);
 
 
         btn_save.setOnClickListener(new View.OnClickListener() {
@@ -115,60 +125,6 @@ public class Get_Schedule extends AppCompatActivity {
 
         Log.e("schedule_id", schedule_id.toString());
 
-        Call<Schedule_Model> call = retrofitAPI.GetSchedule(user_id, schedule_id);
-        call.enqueue(new Callback<Schedule_Model>() {
-            @RequiresApi(api = Build.VERSION_CODES.N)
-            @Override
-            public void onResponse(Call<Schedule_Model> call, Response<Schedule_Model> response) {
-                if (!response.isSuccessful()) {
-                    Toast.makeText(getApplicationContext(), "실패", Toast.LENGTH_SHORT).show();
-                    Log.e("실패", response.code() + "");
-                }
-                Schedule_Model schedule_model = response.body();
-                String schedule_data = schedule_model.schedule_data;
-//                Log.e("성공", schedule_model.toString());
-                Log.e("타입", schedule_model.schedule_data.getClass().getSimpleName());
-
-
-                //문자열에서 [, ] 제거
-                schedule_data = schedule_data.replace("[", "");
-                schedule_data = schedule_data.replace("]", "");
-                Log.e("schedule_data", schedule_data);
-
-                //문자열 -> 배열로 전환
-                color_data = Arrays.stream(schedule_data.split(", "))
-                        .map(String::trim)
-                        .map(Long::valueOf)
-                        .toArray(Long[]::new);//Converting String array to Long array
-
-                Log.e("colordata", Arrays.toString(color_data));
-                Log.e("colordata.getClass().getSimpleName()", color_data.getClass().getSimpleName());
-
-                for (int i = 1; i <= textViews.length - 1; i++) {
-                    int finalI = i;
-                    if (color_data[finalI] == 0) {
-                        textViews[finalI].setBackgroundResource(R.drawable.table_touch_again);
-                    } else if (color_data[finalI] == 1L) {
-                        textViews[finalI].setBackgroundResource(R.drawable.table_touch);
-                    }
-                }
-
-
-//                Long[] colordata = schedule_model.schedule_data.split(",");
-//                Log.e("colordata", Arrays.toString(colordata));
-//                Log.e("colordata.getClass().getSimpleName();",colordata.getClass().getSimpleName());
-//                Log.e("colordata[0]",colordata[colordata.length-1]);
-
-
-            }
-
-            @Override
-            public void onFailure(Call<Schedule_Model> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), "실패", Toast.LENGTH_SHORT).show();
-
-            }
-        });
-
         Button btn_back = (Button) findViewById(R.id.btn_back);
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -180,9 +136,113 @@ public class Get_Schedule extends AppCompatActivity {
             }
         });
 
+        if (save != 3) {
+            Call<Schedule_Model> call = retrofitAPI.GetSchedule(user_id, schedule_id);
+            call.enqueue(new Callback<Schedule_Model>() {
+                @RequiresApi(api = Build.VERSION_CODES.N)
+                @Override
+                public void onResponse(Call<Schedule_Model> call, Response<Schedule_Model> response) {
+                    if (!response.isSuccessful()) {
+                        Toast.makeText(getApplicationContext(), "실패", Toast.LENGTH_SHORT).show();
+                        Log.e("실패", response.code() + "");
+                    }
+                    Schedule_Model schedule_model = response.body();
+                    String schedule_data = schedule_model.schedule_data;
+//                Log.e("성공", schedule_model.toString());
+                    Log.e("타입", schedule_model.schedule_data.getClass().getSimpleName());
 
-        //스케줄 조회 메소드 호출
+
+                    //문자열에서 [, ] 제거
+                    schedule_data = schedule_data.replace("[", "");
+                    schedule_data = schedule_data.replace("]", "");
+                    Log.e("schedule_data", schedule_data);
+
+                    //문자열 -> 배열로 전환
+                    color_data = Arrays.stream(schedule_data.split(", "))
+                            .map(String::trim)
+                            .map(Long::valueOf)
+                            .toArray(Long[]::new);//Converting String array to Long array
+
+                    Log.e("colordata", Arrays.toString(color_data));
+                    Log.e("colordata.getClass().getSimpleName()", color_data.getClass().getSimpleName());
+
+                    for (int i = 1; i <= textViews.length - 1; i++) {
+                        int finalI = i;
+                        if (color_data[finalI] == 0) {
+                            textViews[finalI].setBackgroundResource(R.drawable.table_touch_again);
+                        } else if (color_data[finalI] == 1L) {
+                            textViews[finalI].setBackgroundResource(R.drawable.table_touch);
+                        }
+                    }
 
 
+//                Long[] colordata = schedule_model.schedule_data.split(",");
+//                Log.e("colordata", Arrays.toString(colordata));
+//                Log.e("colordata.getClass().getSimpleName();",colordata.getClass().getSimpleName());
+//                Log.e("colordata[0]",colordata[colordata.length-1]);
+
+
+                }
+
+                @Override
+                public void onFailure(Call<Schedule_Model> call, Throwable t) {
+                    Toast.makeText(getApplicationContext(), "실패", Toast.LENGTH_SHORT).show();
+
+                }
+            });
+
+
+        } else if (save == 3) {
+            Call<Group_Model> call = retrofitAPI.GetMatchedSchedule(group_id);
+            call.enqueue(new Callback<Group_Model>() {
+                @RequiresApi(api = Build.VERSION_CODES.N)
+                @Override
+                public void onResponse(Call<Group_Model> call, Response<Group_Model> response) {
+                    if (!response.isSuccessful()) {
+                        Toast.makeText(getApplicationContext(), "실패", Toast.LENGTH_SHORT).show();
+                        Log.e("실패", response.code() + "");
+                    }
+                    Group_Model group_model = response.body();
+                    String matched_schedule = group_model.getMatched_schedule();
+
+                    //문자열에서 [, ] 제거
+                    matched_schedule = matched_schedule.replace("[", "");
+                    matched_schedule = matched_schedule.replace("]", "");
+                    Log.e("schedule_data", matched_schedule);
+
+                    //문자열 -> 배열로 전환
+                    color_data = Arrays.stream(matched_schedule.split(", "))
+                            .map(String::trim)
+                            .map(Long::valueOf)
+                            .toArray(Long[]::new);//Converting String array to Long array
+
+                    Log.e("colordata", Arrays.toString(color_data));
+                    Log.e("colordata.getClass().getSimpleName()", color_data.getClass().getSimpleName());
+
+                    for (int i = 1; i <= textViews.length - 1; i++) {
+                        int finalI = i;
+                        if (color_data[finalI] == 0) {
+                            textViews[finalI].setBackgroundResource(R.drawable.table_touch_again);
+                        } else if (color_data[finalI] == 1L) {
+                            textViews[finalI].setBackgroundResource(R.drawable.table_touch);
+                        }
+                    }
+
+                }
+
+                @Override
+                public void onFailure(Call<Group_Model> call, Throwable t) {
+                    Toast.makeText(getApplicationContext(), "실패", Toast.LENGTH_SHORT).show();
+                    Log.e("실패", t.getMessage());
+                }
+
+            });
+        }
+        ;
     }
+
+
+    //스케줄 조회 메소드 호출
+
+
 }
