@@ -24,9 +24,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Register extends AppCompatActivity {
 
-    EditText testtext;
-    EditText textinput;
-    Button testbtn;
+    //EditText testtext;
+    //EditText textinput;
+    //Button testbtn;
     Button register_btn;
 
     @Override
@@ -35,7 +35,7 @@ public class Register extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
 
-        testtext = (EditText) findViewById(R.id.text11);
+        //testtext = (EditText) findViewById(R.id.text11);
 
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -49,7 +49,7 @@ public class Register extends AppCompatActivity {
 
         Call<User_Model> call = retrofitAPI.firstUser();
 
-        call.enqueue(new Callback<User_Model>() {
+        /*call.enqueue(new Callback<User_Model>() {
             @Override
             public void onResponse(Call<User_Model> call, Response<User_Model> response) {
 //                if(response.isSuccessful()){
@@ -71,13 +71,13 @@ public class Register extends AppCompatActivity {
                 Log.e("연결실패", t.getMessage());
 
             }
-        });
+        }); */
 
 
-        testbtn = (Button) findViewById(R.id.get_method_btn);
-        textinput = (EditText) findViewById(R.id.page_input_edit_text);
+        //testbtn = (Button) findViewById(R.id.get_method_btn);
+        //textinput = (EditText) findViewById(R.id.page_input_edit_text);
 
-        testbtn.setOnClickListener(new View.OnClickListener() {
+       /* testbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Call<User_Model> call = retrofitAPI.findById(Long.parseLong(textinput.getText().toString()));
@@ -108,7 +108,7 @@ public class Register extends AppCompatActivity {
 
 
 
-        });
+        });*/
 
 
 
@@ -148,7 +148,7 @@ public class Register extends AppCompatActivity {
                         Log.d("보낸데이터", user_create.toString());
                         Log.d("연결이 성공적 : ", response.body().toString());
 
-                        testtext.setText(response.body().getUser_login_id()+"님 환영합니다");
+                        //testtext.setText(response.body().getUser_login_id()+"님 환영합니다");
                         Toast.makeText(getApplicationContext(), "회원가입이 정상적으로 되었습니다.", Toast.LENGTH_LONG).show();
 
                         Intent intent = new Intent(getApplicationContext(), Kakao_Login_Activity.class);

@@ -2,11 +2,14 @@ package com.example.promise.group;
 
 import static com.example.promise.retrofit.IPaddress.IPADRESS;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -40,6 +43,9 @@ public class Management_Group extends AppCompatActivity {
     Button btn_list_user;
     private Long user_id;
     private Long group_id;
+
+
+
 
 
     @Override
@@ -141,16 +147,47 @@ public class Management_Group extends AppCompatActivity {
 
 
                 groupName.setText("그룹이름 : " + group_name);
-                groupCode.setText("그룹코드 : " + group_code);
+                groupCode.setText(group_code);
+
+                String id= groupCode.getText().toString();
+
+                groupCode.setOnTouchListener(new View.OnTouchListener(){   //터치 이벤트 리스너 등록(누를때)
+
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        // TODO Auto-generated method stub
+                        if(event.getAction()==MotionEvent.ACTION_DOWN){ //눌렀을 때 동작
+
+                            //클립보드 사용 코드
+                            ClipboardManager clipboardManager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+                            ClipData clipData = ClipData.newPlainText("ID",id); //클립보드에 ID라는 이름표로 id 값을 복사하여 저장
+                            clipboardManager.setPrimaryClip(clipData);
+
+                            //복사가 되었다면 토스트메시지 노출
+                            Toast.makeText(Management_Group.this,"복사되었습니다.",Toast.LENGTH_SHORT).show();
+
+                        }
+
+
+                        return true;
+                    }
+                });
+
+
 
 
             }
+
 
             @Override
             public void onFailure(Call<User_group_Model> call, Throwable t) {
 
             }
         });
+
+
+
+
 //그룹 삭제
         btn_group_out = findViewById(R.id.btn_group_out);
         btn_group_out.setOnClickListener(new View.OnClickListener() {
