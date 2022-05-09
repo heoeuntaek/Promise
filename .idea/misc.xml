@@ -3,8 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/JiSeon/AndroidStudioProjects/Promise/app/src/main/res/drawable/big_shape.xml" value="0.1115" />
         <entry key="..\:/Users/JiSeon/AndroidStudioProjects/Promise/app/src/main/res/drawable/kakao_login_medium_narrow.xml" value="0.1" />
         <entry key="..\:/Users/JiSeon/AndroidStudioProjects/Promise/app/src/main/res/drawable/roundbutton.xml" value="0.1" />
+        <entry key="..\:/Users/JiSeon/AndroidStudioProjects/Promise/app/src/main/res/drawable/shape.xml" value="0.1" />
         <entry key="..\:/Users/JiSeon/AndroidStudioProjects/Promise/app/src/main/res/drawable/table_inside.xml" value="0.2255" />
         <entry key="..\:/Users/JiSeon/AndroidStudioProjects/Promise/app/src/main/res/drawable/table_outside.xml" value="0.2255" />
         <entry key="..\:/Users/JiSeon/AndroidStudioProjects/Promise/app/src/main/res/drawable/table_section_color.xml" value="0.2255" />
@@ -16,7 +18,7 @@
         <entry key="..\:/Users/JiSeon/AndroidStudioProjects/Promise/app/src/main/res/layout/activity_checking_schedule.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/JiSeon/AndroidStudioProjects/Promise/app/src/main/res/layout/activity_creating_group.xml" value="0.2346014492753623" />
         <entry key="..\:/Users/JiSeon/AndroidStudioProjects/Promise/app/src/main/res/layout/activity_intro.xml" value="0.25364583333333335" />
-        <entry key="..\:/Users/JiSeon/AndroidStudioProjects/Promise/app/src/main/res/layout/activity_kakao_login.xml" value="0.264" />
+        <entry key="..\:/Users/JiSeon/AndroidStudioProjects/Promise/app/src/main/res/layout/activity_kakao_login.xml" value="0.2" />
         <entry key="..\:/Users/JiSeon/AndroidStudioProjects/Promise/app/src/main/res/layout/activity_main.xml" value="0.2346014492753623" />
         <entry key="..\:/Users/JiSeon/AndroidStudioProjects/Promise/app/src/main/res/layout/activity_management_group.xml" value="0.2346014492753623" />
         <entry key="..\:/Users/JiSeon/AndroidStudioProjects/Promise/app/src/main/res/layout/activity_management_schedule.xml" value="0.2346014492753623" />
