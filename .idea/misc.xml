@@ -7,11 +7,13 @@
         <entry key="..\:/Users/JiSeon/AndroidStudioProjects/Promise/app/src/main/res/drawable/button.xml" value="0.1" />
         <entry key="..\:/Users/JiSeon/AndroidStudioProjects/Promise/app/src/main/res/drawable/kakao_login_medium_narrow.xml" value="0.1" />
         <entry key="..\:/Users/JiSeon/AndroidStudioProjects/Promise/app/src/main/res/drawable/layout.xml" value="0.1115" />
+        <entry key="..\:/Users/JiSeon/AndroidStudioProjects/Promise/app/src/main/res/drawable/roundbtn2.xml" value="0.1" />
         <entry key="..\:/Users/JiSeon/AndroidStudioProjects/Promise/app/src/main/res/drawable/roundbutton.xml" value="0.1" />
         <entry key="..\:/Users/JiSeon/AndroidStudioProjects/Promise/app/src/main/res/drawable/shape.xml" value="0.1" />
         <entry key="..\:/Users/JiSeon/AndroidStudioProjects/Promise/app/src/main/res/drawable/shape2.xml" value="0.1115" />
         <entry key="..\:/Users/JiSeon/AndroidStudioProjects/Promise/app/src/main/res/drawable/shape3.xml" value="0.1" />
         <entry key="..\:/Users/JiSeon/AndroidStudioProjects/Promise/app/src/main/res/drawable/shape4.xml" value="0.1" />
+        <entry key="..\:/Users/JiSeon/AndroidStudioProjects/Promise/app/src/main/res/drawable/shape5.xml" value="0.1" />
         <entry key="..\:/Users/JiSeon/AndroidStudioProjects/Promise/app/src/main/res/drawable/table_inside.xml" value="0.2255" />
         <entry key="..\:/Users/JiSeon/AndroidStudioProjects/Promise/app/src/main/res/drawable/table_outside.xml" value="0.2255" />
         <entry key="..\:/Users/JiSeon/AndroidStudioProjects/Promise/app/src/main/res/drawable/table_section_color.xml" value="0.2255" />
@@ -23,15 +25,23 @@
         <entry key="..\:/Users/JiSeon/AndroidStudioProjects/Promise/app/src/main/res/layout/activity_checking_schedule.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/JiSeon/AndroidStudioProjects/Promise/app/src/main/res/layout/activity_content.xml" value="0.21666666666666667" />
         <entry key="..\:/Users/JiSeon/AndroidStudioProjects/Promise/app/src/main/res/layout/activity_creating_group.xml" value="0.2" />
+        <entry key="..\:/Users/JiSeon/AndroidStudioProjects/Promise/app/src/main/res/layout/activity_get_schedule.xml" value="0.20885416666666667" />
+        <entry key="..\:/Users/JiSeon/AndroidStudioProjects/Promise/app/src/main/res/layout/activity_group_list.xml" value="0.20885416666666667" />
         <entry key="..\:/Users/JiSeon/AndroidStudioProjects/Promise/app/src/main/res/layout/activity_intro.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/JiSeon/AndroidStudioProjects/Promise/app/src/main/res/layout/activity_kakao_login.xml" value="0.264" />
         <entry key="..\:/Users/JiSeon/AndroidStudioProjects/Promise/app/src/main/res/layout/activity_main.xml" value="0.264" />
-        <entry key="..\:/Users/JiSeon/AndroidStudioProjects/Promise/app/src/main/res/layout/activity_management_group.xml" value="0.2346014492753623" />
-        <entry key="..\:/Users/JiSeon/AndroidStudioProjects/Promise/app/src/main/res/layout/activity_management_schedule.xml" value="0.2346014492753623" />
+        <entry key="..\:/Users/JiSeon/AndroidStudioProjects/Promise/app/src/main/res/layout/activity_management_group.xml" value="0.176" />
+        <entry key="..\:/Users/JiSeon/AndroidStudioProjects/Promise/app/src/main/res/layout/activity_management_schedule.xml" value="0.2" />
         <entry key="..\:/Users/JiSeon/AndroidStudioProjects/Promise/app/src/main/res/layout/activity_participate_group.xml" value="0.2346014492753623" />
         <entry key="..\:/Users/JiSeon/AndroidStudioProjects/Promise/app/src/main/res/layout/activity_register.xml" value="0.264" />
+        <entry key="..\:/Users/JiSeon/AndroidStudioProjects/Promise/app/src/main/res/layout/activity_schedule_list.xml" value="0.20885416666666667" />
+        <entry key="..\:/Users/JiSeon/AndroidStudioProjects/Promise/app/src/main/res/layout/activity_schedule_match.xml" value="0.20885416666666667" />
+        <entry key="..\:/Users/JiSeon/AndroidStudioProjects/Promise/app/src/main/res/layout/activity_user_list.xml" value="0.20885416666666667" />
         <entry key="..\:/Users/JiSeon/AndroidStudioProjects/Promise/app/src/main/res/layout/activity_writing_schedule.xml" value="0.2" />
+        <entry key="..\:/Users/JiSeon/AndroidStudioProjects/Promise/app/src/main/res/layout/group_list_item.xml" value="0.20885416666666667" />
         <entry key="..\:/Users/JiSeon/AndroidStudioProjects/Promise/app/src/main/res/layout/intro_activity.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/JiSeon/AndroidStudioProjects/Promise/app/src/main/res/layout/schedule_list_item.xml" value="0.20885416666666667" />
+        <entry key="..\:/Users/JiSeon/AndroidStudioProjects/Promise/app/src/main/res/layout/user_list_item.xml" value="0.20885416666666667" />
         <entry key="..\:/Users/taek/AndroidStudioProjects/Promise/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.136" />
         <entry key="..\:/Users/taek/AndroidStudioProjects/Promise/app/src/main/res/drawable/ic_launcher_background.xml" value="0.136" />
         <entry key="..\:/Users/taek/AndroidStudioProjects/Promise/app/src/main/res/drawable/roundbutton.xml" value="0.136" />
