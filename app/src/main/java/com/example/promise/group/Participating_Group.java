@@ -48,8 +48,7 @@ public class Participating_Group extends AppCompatActivity {
         user_id = sharedPref.getLong("user_id", 0);
 
 
-
-        Gson gson = new GsonBuilder() .setLenient() .create();
+        Gson gson = new GsonBuilder().setLenient().create();
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(IPADRESS)
@@ -65,7 +64,7 @@ public class Participating_Group extends AppCompatActivity {
 
                 //group_code로 group_id 불러오기 -get
 
-                groupCode= findViewById(R.id.group_code);
+                groupCode = findViewById(R.id.group_code);
                 String group_code = groupCode.getText().toString();
 
                 Call<User_group_Model> call2 = retrofitAPI.participe_group(user_id, group_code);
@@ -74,19 +73,26 @@ public class Participating_Group extends AppCompatActivity {
                     public void onResponse(Call<User_group_Model> call, Response<User_group_Model> response) {
                         if (!response.isSuccessful()) {
                             Log.e("연결이 비정상적 : ", "error code : " + response.code());
+                            Toast.makeText(getApplicationContext(), "이미 그룹에 참여하였습니다", Toast.LENGTH_SHORT).show();
                             return;
                         }
-                        Log.e("response.body()", response.body().toString());
-                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                        startActivity(intent);
-                        Toast.makeText(getApplicationContext(), "그룹에 참여하였습니다.", Toast.LENGTH_SHORT).show();
+                        if (response.body() == null) {
+                            Log.e("그룹코드가 잘못되었습니다. : ", "body null");
+                            Toast.makeText(getApplicationContext(), "그룹코드가 잘못되었습니다.", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Log.e("response.body()", response.body().toString());
+                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                            startActivity(intent);
+                            Toast.makeText(getApplicationContext(), "그룹에 참여하였습니다.", Toast.LENGTH_SHORT).show();
+                        }
 
 
                     }
 
                     @Override
                     public void onFailure(Call<User_group_Model> call, Throwable t) {
-                        Log.e("연결실패", t.getMessage());
+                        Log.e("그룹코드가 잘못되었습니다. : ", "body null");
+                        Toast.makeText(getApplicationContext(), "그룹코드가 잘못되었습니다.", Toast.LENGTH_SHORT).show();
 
                     }
                 });
@@ -94,7 +100,6 @@ public class Participating_Group extends AppCompatActivity {
 
                 //user_login_id로 user_id 불러옴
                 //user_id로 patch user 보내기
-
 
 
             }

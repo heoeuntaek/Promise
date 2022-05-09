@@ -113,6 +113,7 @@ public class Kakao_Login_Activity extends AppCompatActivity {
 
                                 @Override
                                 public void onFailure(Call<User_Model> call, Throwable t) {
+                                    Toast.makeText(Kakao_Login_Activity.this, "아이디를 찾을 수 없습니다.", Toast.LENGTH_SHORT).show();
 
                                 }
                             });

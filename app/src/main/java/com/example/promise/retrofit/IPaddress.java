@@ -12,7 +12,7 @@ public class IPaddress {
 //    public final static String IPADRESS = "http://192.168.27.68:8080/";
 
     // 안양
-   // public final static String IPADRESS = "http://192.168.45.27:8080/";
+//    public final static String IPADRESS = "http://192.168.45.27:8080/";
 
 
 }
