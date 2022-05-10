@@ -20,12 +20,7 @@ import com.example.promise.MainActivity;
 import com.example.promise.R;
 import com.example.promise.retrofit.RetrofitAPI;
 import com.example.promise.retrofit.User_Model;
-import com.kakao.sdk.auth.model.OAuthToken;
-import com.kakao.sdk.user.UserApiClient;
-import com.kakao.sdk.user.model.User;
 
-import kotlin.Unit;
-import kotlin.jvm.functions.Function2;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -93,7 +88,21 @@ public class Kakao_Login_Activity extends AppCompatActivity {
                 call.enqueue(new Callback<User_Model>() {
                     @Override
                     public void onResponse(Call<User_Model> call, Response<User_Model> response) {
+
+                        Log.e("response.code() + ", response.message());
+                        Log.e("response.code() + ", response.code()+"");
+
+                        if(response.code()==500)
+                        {
+                            Toast toast = Toast.makeText(getApplicationContext(), "아이디가 없습니다.", Toast.LENGTH_SHORT);
+                            Log.e("아이디가 없습니다.", "아이디가 없습니다.");
+                        }
+
                         if (response.isSuccessful()) {
+
+
+
+
                             User_Model login_user = response.body();
                             Log.d(TAG, "ID: " + response.body().toString());
 
@@ -138,7 +147,7 @@ public class Kakao_Login_Activity extends AppCompatActivity {
                     @Override
                     public void onFailure(Call<User_Model> call, Throwable t) {
 
-                        Toast.makeText(getApplicationContext(), "비번이 틀립니다", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(getApplicationContext(), "비번이 틀립니다", Toast.LENGTH_LONG).show();
                         Log.d(TAG, "에러메세지: " + t.getMessage());
                     }
                 });
@@ -147,6 +156,8 @@ public class Kakao_Login_Activity extends AppCompatActivity {
 
             }
         });
+
+
 
 //        회원가입 으로 이동
         Button btn2 = (Button) findViewById(R.id.to_register_btn);
