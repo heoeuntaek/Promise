@@ -4,79 +4,81 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/sea"
     tools:context=".MainActivity">
 
     <Button
         android:id="@+id/btn_create_group"
-        android:layout_width="206dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="2dp"
-        android:layout_marginBottom="36dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="241dp"
+        android:layout_marginEnd="22dp"
+        android:layout_marginBottom="45dp"
         android:background="@drawable/roundbutton"
-        android:backgroundTint="#4F2196F3"
-        android:elevation="10dp"
+        android:elevation="20dp"
+        android:fontFamily="@font/happiness"
+        android:drawableTop="@drawable/add4"
         android:text="그룹 생성"
-        app:layout_constraintBottom_toTopOf="@+id/btn_participe_group"
-        app:layout_constraintStart_toStartOf="@+id/btn_participe_group" />
+        app:layout_constraintBottom_toTopOf="@+id/btn_group_management"
+        app:layout_constraintEnd_toStartOf="@+id/btn_participe_group"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <Button
         android:id="@+id/btn_participe_group"
-        android:layout_width="206dp"
-        android:layout_height="50dp"
-        android:layout_marginEnd="2dp"
-        android:layout_marginBottom="32dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="241dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="43dp"
         android:background="@drawable/roundbutton"
-        android:backgroundTint="#4F2196F3"
+        android:fontFamily="@font/happiness"
+        android:drawableTop="@drawable/join"
         android:text="그룹 참가"
-        app:layout_constraintBottom_toTopOf="@+id/btn_group_management"
-        app:layout_constraintEnd_toEndOf="@+id/btn_group_management" />
+        app:layout_constraintBottom_toTopOf="@+id/schedule_management"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_create_group"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btn_group_management"
-        android:layout_width="206dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="2dp"
-        android:layout_marginBottom="32dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="159dp"
         android:background="@drawable/roundbutton"
-        android:backgroundTint="#4F2196F3"
+        android:fontFamily="@font/happiness"
+        android:drawableTop="@drawable/group"
         android:text="그룹 관리"
-        app:layout_constraintBottom_toTopOf="@+id/schedule_management"
-        app:layout_constraintStart_toStartOf="@+id/schedule_management" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/schedule_management"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_create_group" />
 
     <Button
         android:id="@+id/schedule_management"
-        android:layout_width="206dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="168dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="159dp"
         android:background="@drawable/roundbutton"
-        android:backgroundTint="#4F2196F3"
+        android:fontFamily="@font/happiness"
+        android:drawableTop="@drawable/calendar"
         android:text="스케줄 관리"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="216dp"
-        android:background="#2E8CFF"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:titleTextColor="#8B0000">
-
-
-
-    </androidx.appcompat.widget.Toolbar>
+        app:layout_constraintStart_toEndOf="@+id/btn_group_management"
+        app:layout_constraintTop_toBottomOf="@+id/btn_participe_group" />
 
     <TextView
         android:id="@+id/user_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="108dp"
+        android:fontFamily="@font/happiness"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

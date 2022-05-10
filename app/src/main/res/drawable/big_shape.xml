@@ -4,13 +4,13 @@
     android:padding="10dp"
     android:shape="rectangle">
     <!-- 배경 색 설정 / 제가 color에 지정한 색입니다 ㅎㅎ -->
-    <solid android:color="#FFFFFF" />
+    <solid android:color="#03A9F4" />
     <!-- 모서리 곡선 설정 -->
     <corners
-        android:topLeftRadius="15dp"
-        android:topRightRadius="15dp"
-        android:bottomLeftRadius="15dp"
-        android:bottomRightRadius="15dp"/>
+        android:topLeftRadius="5dp"
+        android:topRightRadius="5dp"
+        android:bottomLeftRadius="5dp"
+        android:bottomRightRadius="5dp"/>
     <!-- 선 크기 및 색 지정 -->
 
 </shape>

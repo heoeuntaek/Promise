@@ -4,54 +4,54 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/wave"
     tools:context=".schedule.Management_Schedule">
 
 
     <Button
         android:id="@+id/btn_create_schedule"
-        android:layout_width="206dp"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="240dp"
-        android:layout_marginBottom="34dp"
-        android:background="@drawable/roundbutton"
-        android:backgroundTint="#4F2196F3"
+        android:layout_marginStart="35dp"
+        android:layout_marginEnd="31dp"
+        android:layout_marginBottom="326dp"
+        android:background="@drawable/shape3"
+        android:drawableTop="@drawable/pen2"
         android:elevation="10dp"
+        android:fontFamily="@font/happiness"
         android:text="스케줄 작성"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_check_schedule_list"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
 
     <Button
         android:id="@+id/btn_check_schedule_list"
-        android:layout_width="206dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="55dp"
-        android:background="@drawable/roundbutton"
-        android:backgroundTint="#4F2196F3"
+        android:layout_width="0dp"
+        android:layout_height="110dp"
+        android:layout_marginEnd="40dp"
+        android:background="@drawable/shape3"
+        android:drawableTop="@drawable/search"
         android:elevation="10dp"
-        android:text="스케줄 조회"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_create_schedule" />
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="258dp"
-        android:background="#2E8CFF"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:layout_constraintBottom_toTopOf="@+id/btn_create_group"
+        android:fontFamily="@font/happiness"
+        android:text="스케줄 조회"
+        app:layout_constraintBaseline_toBaselineOf="@+id/btn_create_schedule"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_create_schedule" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="109dp"
+        android:layout_height="0dp"
+
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="182dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_create_schedule"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:titleTextColor="#8B0000">
-
-
-    </androidx.appcompat.widget.Toolbar>
+        app:srcCompat="@drawable/calendar" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,13 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/wave"
     tools:context=".group.Management_Group">
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="parent"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="295dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_share_schedule"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -22,88 +25,80 @@
             android:orientation="vertical"></LinearLayout>
     </LinearLayout>
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#2E8CFF"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:titleTextColor="#8B0000"></androidx.appcompat.widget.Toolbar>
-
     <Button
         android:id="@+id/btn_match_schedule"
-        android:layout_width="206dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/roundbutton"
-        android:backgroundTint="#4F2196F3"
+        android:layout_width="80dp"
+        android:layout_height="110dp"
+        android:layout_marginEnd="64dp"
+        android:background="@drawable/roundbtn2"
         android:elevation="10dp"
         android:text="스케줄 매칭"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_check_schedule"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_check_schedule" />
+        app:layout_constraintStart_toEndOf="@+id/btn_share_schedule"
+        app:layout_constraintTop_toTopOf="@+id/btn_check_schedule"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/btn_share_schedule"
-        android:layout_width="206dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="250dp"
-        android:background="@drawable/roundbutton"
-        android:backgroundTint="#4F2196F3"
+        android:layout_width="80dp"
+        android:layout_height="112dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginEnd="140dp"
+        android:layout_marginBottom="343dp"
+        android:background="@drawable/roundbtn2"
         android:elevation="10dp"
         android:text="스케줄 공유"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_match_schedule"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
     <Button
         android:id="@+id/btn_list_user"
-        android:layout_width="206dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/roundbutton"
-        android:backgroundTint="#4F2196F3"
+        android:layout_width="89dp"
+        android:layout_height="67dp"
+        android:layout_marginTop="92dp"
+        android:layout_marginEnd="97dp"
+
+        android:background="@drawable/roundbtn2"
         android:elevation="10dp"
         android:text="그룹원 조회"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_group_out" />
+        app:layout_constraintStart_toEndOf="@+id/btn_group_out"
+        app:layout_constraintTop_toBottomOf="@+id/btn_check_schedule" />
 
     <Button
         android:id="@+id/btn_group_out"
-        android:layout_width="206dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/roundbutton"
-        android:backgroundTint="#4F2196F3"
+        android:layout_width="96dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="86dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="177dp"
+        android:background="@drawable/roundbtn2"
         android:elevation="10dp"
         android:text="그룹 나가기"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_list_user"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_match_schedule" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_check_schedule"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/btn_check_schedule"
-        android:layout_width="206dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/roundbutton"
-        android:backgroundTint="#4F2196F3"
+        android:layout_width="81dp"
+        android:layout_height="109dp"
+        android:layout_marginEnd="22dp"
+        android:layout_marginBottom="350dp"
+        android:background="@drawable/roundbtn2"
         android:elevation="10dp"
-        android:text="공유 스케줄 조회"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_share_schedule" />
+        android:text="공유 스케줄       조회"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_match_schedule"
+        app:layout_constraintHorizontal_bias="0.815"
+        app:layout_constraintStart_toEndOf="@+id/btn_share_schedule"
+        app:layout_constraintTop_toBottomOf="@+id/btn_share_schedule"
+        app:layout_constraintVertical_bias="0.884" />
 
     <TextView
         android:id="@+id/group_name_management"
