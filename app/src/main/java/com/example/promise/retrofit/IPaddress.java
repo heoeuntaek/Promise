@@ -3,10 +3,10 @@ package com.example.promise.retrofit;
 public class IPaddress {
 
    //인천
-    public final static String IPADRESS = "http://192.168.82.36:8080/";
+//    public final static String IPADRESS = "http://192.168.82.36:8080/";
 
 //aws
-//    public final static String IPADRESS = "http://3.34.97.79:8080/";
+    public final static String IPADRESS = "http://3.34.97.79:8080/";
 
     //하스팟
 //    public final static String IPADRESS = "http://192.168.27.68:8080/";
