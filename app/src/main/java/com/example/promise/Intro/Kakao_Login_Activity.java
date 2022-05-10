@@ -94,7 +94,7 @@ public class Kakao_Login_Activity extends AppCompatActivity {
 
                         if(response.code()==500)
                         {
-                            Toast toast = Toast.makeText(getApplicationContext(), "아이디가 없습니다.", Toast.LENGTH_SHORT);
+                            Toast.makeText(getApplicationContext(), "아이디가 없습니다.", Toast.LENGTH_SHORT).show();
                             Log.e("아이디가 없습니다.", "아이디가 없습니다.");
                         }
 
