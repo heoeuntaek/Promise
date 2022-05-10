@@ -45,9 +45,6 @@ public class Management_Group extends AppCompatActivity {
     private Long group_id;
 
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,6 +69,17 @@ public class Management_Group extends AppCompatActivity {
                 .build();
 
         RetrofitAPI retrofitAPI = retrofit.create(RetrofitAPI.class);
+
+
+        //메인으로
+        Button btn_main_group_management = findViewById(R.id.btn_main_group_management);
+        btn_main_group_management.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Management_Group.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
         //스케줄 공유
         Button btn_share_schedule = findViewById(R.id.btn_share_schedule);
@@ -149,22 +157,22 @@ public class Management_Group extends AppCompatActivity {
                 groupName.setText("그룹이름 : " + group_name);
                 groupCode.setText(group_code);
 
-                String id= groupCode.getText().toString();
+                String id = groupCode.getText().toString();
 
-                groupCode.setOnTouchListener(new View.OnTouchListener(){   //터치 이벤트 리스너 등록(누를때)
+                groupCode.setOnTouchListener(new View.OnTouchListener() {   //터치 이벤트 리스너 등록(누를때)
 
                     @Override
                     public boolean onTouch(View v, MotionEvent event) {
                         // TODO Auto-generated method stub
-                        if(event.getAction()==MotionEvent.ACTION_DOWN){ //눌렀을 때 동작
+                        if (event.getAction() == MotionEvent.ACTION_DOWN) { //눌렀을 때 동작
 
                             //클립보드 사용 코드
                             ClipboardManager clipboardManager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
-                            ClipData clipData = ClipData.newPlainText("ID",id); //클립보드에 ID라는 이름표로 id 값을 복사하여 저장
+                            ClipData clipData = ClipData.newPlainText("ID", id); //클립보드에 ID라는 이름표로 id 값을 복사하여 저장
                             clipboardManager.setPrimaryClip(clipData);
 
                             //복사가 되었다면 토스트메시지 노출
-                            Toast.makeText(Management_Group.this,"복사되었습니다.",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Management_Group.this, "복사되었습니다.", Toast.LENGTH_SHORT).show();
 
                         }
 
@@ -172,8 +180,6 @@ public class Management_Group extends AppCompatActivity {
                         return true;
                     }
                 });
-
-
 
 
             }
@@ -184,8 +190,6 @@ public class Management_Group extends AppCompatActivity {
 
             }
         });
-
-
 
 
 //그룹 삭제
