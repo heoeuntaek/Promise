@@ -70,7 +70,7 @@
             android:name=".group.Creating_Group"
             android:exported="false" />
         <activity
-            android:name=".Intro.Kakao_Login_Activity"
+            android:name=".Intro.Login_Activity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

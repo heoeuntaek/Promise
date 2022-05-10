@@ -14,9 +14,10 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.promise.Intro.Login_Activity;
 import com.example.promise.group.Creating_Group;
-import com.example.promise.group.Participating_Group;
 import com.example.promise.group.Group_list;
+import com.example.promise.group.Participating_Group;
 import com.example.promise.retrofit.RetrofitAPI;
 import com.example.promise.retrofit.User_Model;
 import com.example.promise.schedule.Management_Schedule;
@@ -140,6 +141,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Button btn_logout = (Button) findViewById(R.id.btn_logout);
+        btn_logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Login_Activity.class);
+                startActivity(intent);
+                Toast.makeText(getApplicationContext(), "로그아웃 되었습니다.", Toast.LENGTH_SHORT).show();
+            }
+        });
 
 
     }

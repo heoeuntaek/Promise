@@ -27,7 +27,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class Kakao_Login_Activity extends AppCompatActivity {
+public class Login_Activity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
     private TextView nickName;
     private ImageView profileImage;
@@ -122,7 +122,7 @@ public class Kakao_Login_Activity extends AppCompatActivity {
 
                                 @Override
                                 public void onFailure(Call<User_Model> call, Throwable t) {
-                                    Toast.makeText(Kakao_Login_Activity.this, "아이디를 찾을 수 없습니다.", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(Login_Activity.this, "아이디를 찾을 수 없습니다.", Toast.LENGTH_SHORT).show();
 
                                 }
                             });
@@ -131,7 +131,7 @@ public class Kakao_Login_Activity extends AppCompatActivity {
 
 
 
-                            Intent intent = new Intent(Kakao_Login_Activity.this, MainActivity.class);
+                            Intent intent = new Intent(Login_Activity.this, MainActivity.class);
                             startActivity(intent);
 
                         }
@@ -163,7 +163,7 @@ public class Kakao_Login_Activity extends AppCompatActivity {
         Button btn2 = (Button) findViewById(R.id.to_register_btn);
         btn2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(Kakao_Login_Activity.this, Register.class);
+                Intent intent = new Intent(Login_Activity.this, Register.class);
                 startActivity(intent);
             }
         });

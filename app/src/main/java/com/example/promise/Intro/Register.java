@@ -151,7 +151,7 @@ public class Register extends AppCompatActivity {
                         //testtext.setText(response.body().getUser_login_id()+"님 환영합니다");
                         Toast.makeText(getApplicationContext(), "회원가입이 정상적으로 되었습니다.", Toast.LENGTH_LONG).show();
 
-                        Intent intent = new Intent(getApplicationContext(), Kakao_Login_Activity.class);
+                        Intent intent = new Intent(getApplicationContext(), Login_Activity.class);
                         startActivity(intent);
                     }
 
