@@ -51,6 +51,8 @@ public class Group_list extends AppCompatActivity {
 
         RetrofitAPI retrofitAPI = retrofit.create(RetrofitAPI.class);
 
+        Toast.makeText(getApplicationContext(), "그룹을 선택해주세요", Toast.LENGTH_SHORT).show();
+
         //uername으로 user 객체 불러오기 ->user_id 저장
         Call<List<Group_Model>> call = retrofitAPI.groupList(user_id);
         call.enqueue(new Callback<List<Group_Model>>() {

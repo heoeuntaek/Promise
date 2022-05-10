@@ -48,6 +48,8 @@ public class Schedule_List extends AppCompatActivity {
         Long group_id = intent.getLongExtra("group_id", 0);
 
 
+        Toast.makeText(getApplicationContext(), "스케줄을 선택해주세요", Toast.LENGTH_SHORT).show();
+
         Log.e("save", save + "");
 
 

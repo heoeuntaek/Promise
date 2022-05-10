@@ -125,16 +125,7 @@ public class Get_Schedule extends AppCompatActivity {
 
         Log.e("schedule_id", schedule_id.toString());
 
-        Button btn_back = (Button) findViewById(R.id.btn_back);
-        btn_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), Schedule_List.class);
 
-                startActivity(intent);
-
-            }
-        });
 
         if (save != 3) {
             Call<Schedule_Model> call = retrofitAPI.GetSchedule(user_id, schedule_id);

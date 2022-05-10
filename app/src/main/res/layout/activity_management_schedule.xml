@@ -53,5 +53,21 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/calendar" />
 
+    <Button
+        android:id="@+id/btn_main"
+        android:layout_width="80dp"
+        android:layout_height="90dp"
+        android:layout_marginTop="400dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/shape3"
+        android:drawableTop="@drawable/main"
+        android:elevation="10dp"
+        android:fontFamily="@font/happiness"
+        android:text="메인으로"
+        app:layout_constraintEnd_toEndOf="@+id/btn_check_schedule_list"
+        app:layout_constraintHorizontal_bias="0.548"
+        app:layout_constraintStart_toStartOf="@+id/btn_create_schedule"
+        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

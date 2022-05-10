@@ -71,14 +71,11 @@ public class Participating_Group extends AppCompatActivity {
                 call2.enqueue(new Callback<User_group_Model>() {
                     @Override
                     public void onResponse(Call<User_group_Model> call, Response<User_group_Model> response) {
-                        if (!response.isSuccessful()) {
-                            Log.e("연결이 비정상적 : ", "error code : " + response.code());
-                            Toast.makeText(getApplicationContext(), "이미 그룹에 참여하였습니다", Toast.LENGTH_SHORT).show();
-                            return;
-                        }
+
                         if (response.body() == null) {
-                            Log.e("그룹코드가 잘못되었습니다. : ", "body null");
-                            Toast.makeText(getApplicationContext(), "그룹코드가 잘못되었습니다.", Toast.LENGTH_SHORT).show();
+                            Log.e("존재하지 않는 그룹코드입니다.", "body null");
+                            Toast.makeText(getApplicationContext(), "존재하지 않는 그룹코드입니다.", Toast.LENGTH_SHORT).show();
+
                         } else {
                             Log.e("response.body()", response.body().toString());
                             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
@@ -91,8 +88,8 @@ public class Participating_Group extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<User_group_Model> call, Throwable t) {
-                        Log.e("그룹코드가 잘못되었습니다. : ", "body null");
-                        Toast.makeText(getApplicationContext(), "그룹코드가 잘못되었습니다.", Toast.LENGTH_SHORT).show();
+                        Log.e("이미 그룹에 참여하였습니다.", "body null");
+                        Toast.makeText(getApplicationContext(), "이미 그룹에 참여하였거나", Toast.LENGTH_SHORT).show();
 
                     }
                 });

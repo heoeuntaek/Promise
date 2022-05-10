@@ -8,9 +8,12 @@
 
     <Button
         android:id="@+id/btn_match"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="112dp"
+        android:layout_height="89dp"
+        android:layout_marginStart="155dp"
         android:layout_marginTop="250dp"
+        android:layout_marginEnd="155dp"
+        android:background="@drawable/roundbtn2"
         android:text="스케줄 매칭"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -19,9 +22,10 @@
 
     <Button
         android:id="@+id/btn_getMatched_Schedule"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_width="150dp"
+        android:layout_height="89dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/roundbtn2"
         android:text="매칭된 스케줄 조회"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"

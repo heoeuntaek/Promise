@@ -7,6 +7,7 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.promise.MainActivity;
 import com.example.promise.R;
 
 public class Management_Schedule extends AppCompatActivity {
@@ -32,6 +33,15 @@ public class Management_Schedule extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), Schedule_List.class);
                 int save = 2;
                 intent.putExtra("save", save);
+                startActivity(intent);
+            }
+        });
+
+        Button btn_main = (Button) findViewById(R.id.btn_main);
+        btn_main.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
             }
         });
