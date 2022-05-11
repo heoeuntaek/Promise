@@ -98,6 +98,9 @@ public interface RetrofitAPI {
     @GET("api/group/matchedSchedule/{group_id}")
     Call<Group_Model>GetMatchedSchedule(@Path("group_id") Long group_id);
 
+    @DELETE("api/schedule/{schedule_id}")
+    Call<Schedule_Model>DeleteSchedule(@Path("schedule_id") Long schedule_id);
+
 
     /*@GET("api/data")
     Call<Schedule_Model> getData(@Query("shcedule_name") String schedule_name, @Query("data") String data);*/

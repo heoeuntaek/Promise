@@ -70,6 +70,9 @@ public class Get_Schedule extends AppCompatActivity {
         TextView textview_match = findViewById(R.id.textview_match);
         textview_match.setVisibility(View.INVISIBLE);
 
+        Button btn_delete = findViewById(R.id.btn_delete);
+        btn_delete.setVisibility(View.INVISIBLE);
+
         if (save == 1) { //그룹에서 온 경우
             btn_save.setVisibility(View.VISIBLE);
         }
@@ -77,6 +80,41 @@ public class Get_Schedule extends AppCompatActivity {
         if (save == 3) {
             textview_match.setVisibility(View.VISIBLE);
         }
+
+        if (save == 2) { //스케줄매칭에서 온 경우
+            btn_delete.setVisibility(View.VISIBLE);
+        }
+
+        btn_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Call<Schedule_Model>call=retrofitAPI.DeleteSchedule(schedule_id);
+                call.enqueue(new Callback<Schedule_Model>() {
+                    @Override
+                    public void onResponse(Call<Schedule_Model> call, Response<Schedule_Model> response) {
+                        if(!response.isSuccessful()){
+                            Toast.makeText(getApplicationContext(), "삭제 실패", Toast.LENGTH_SHORT).show();
+                            Log.e("삭제 실패", response.code() + "");
+                            return;
+                        }
+                        Log.e("삭제 성공", response.body().toString());
+                        Toast.makeText(getApplicationContext(), "삭제 성공", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(getApplicationContext(), Management_Schedule.class);
+                        startActivity(intent);
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<Schedule_Model> call, Throwable t) {
+                        Toast.makeText(getApplicationContext(), "연결 실패", Toast.LENGTH_SHORT).show();
+                        Log.e("연결 실패", t.getMessage());
+
+                    }
+                });
+            }
+        });
+
+
         Long group_id = intent.getLongExtra("group_id", 0);
 
 
@@ -124,7 +162,6 @@ public class Get_Schedule extends AppCompatActivity {
 
 
         Log.e("schedule_id", schedule_id.toString());
-
 
 
         if (save != 3) {
@@ -194,28 +231,32 @@ public class Get_Schedule extends AppCompatActivity {
                         Log.e("실패", response.code() + "");
                     }
                     Group_Model group_model = response.body();
-                    String matched_schedule = group_model.getMatched_schedule();
+                    if (group_model.getMatched_schedule() == null) {
+                        Toast.makeText(getApplicationContext(), "매칭된 스케줄이 없습니다.", Toast.LENGTH_SHORT).show();
+                    } else {
+                        String matched_schedule = group_model.getMatched_schedule();
 
-                    //문자열에서 [, ] 제거
-                    matched_schedule = matched_schedule.replace("[", "");
-                    matched_schedule = matched_schedule.replace("]", "");
-                    Log.e("schedule_data", matched_schedule);
+                        //문자열에서 [, ] 제거
+                        matched_schedule = matched_schedule.replace("[", "");
+                        matched_schedule = matched_schedule.replace("]", "");
+                        Log.e("schedule_data", matched_schedule);
 
-                    //문자열 -> 배열로 전환
-                    color_data = Arrays.stream(matched_schedule.split(", "))
-                            .map(String::trim)
-                            .map(Long::valueOf)
-                            .toArray(Long[]::new);//Converting String array to Long array
+                        //문자열 -> 배열로 전환
+                        color_data = Arrays.stream(matched_schedule.split(", "))
+                                .map(String::trim)
+                                .map(Long::valueOf)
+                                .toArray(Long[]::new);//Converting String array to Long array
 
-                    Log.e("colordata", Arrays.toString(color_data));
-                    Log.e("colordata.getClass().getSimpleName()", color_data.getClass().getSimpleName());
+                        Log.e("colordata", Arrays.toString(color_data));
+                        Log.e("colordata.getClass().getSimpleName()", color_data.getClass().getSimpleName());
 
-                    for (int i = 1; i <= textViews.length - 1; i++) {
-                        int finalI = i;
-                        if (color_data[finalI] == 0) {
-                            textViews[finalI].setBackgroundResource(R.drawable.table_touch_again);
-                        } else if (color_data[finalI] == 1L) {
-                            textViews[finalI].setBackgroundResource(R.drawable.table_touch);
+                        for (int i = 1; i <= textViews.length - 1; i++) {
+                            int finalI = i;
+                            if (color_data[finalI] == 0) {
+                                textViews[finalI].setBackgroundResource(R.drawable.table_touch_again);
+                            } else if (color_data[finalI] == 1L) {
+                                textViews[finalI].setBackgroundResource(R.drawable.table_touch);
+                            }
                         }
                     }
 
