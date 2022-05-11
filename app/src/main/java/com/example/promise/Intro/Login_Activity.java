@@ -53,15 +53,12 @@ public class Login_Activity extends AppCompatActivity {
 //        });
 
 
-
-
-
         userLoginId = findViewById(R.id.user_login_id_login);
-        userPass = findViewById(R.id.user_pass_login );
+        userPass = findViewById(R.id.user_pass_login);
         btn_login = findViewById(R.id.login_btn);
 
 
-        btn_login.setOnClickListener(new View.OnClickListener(){
+        btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -73,7 +70,6 @@ public class Login_Activity extends AppCompatActivity {
                 user_login.setUser_pass(user_pass);
 
 
-
                 Retrofit retrofit = new Retrofit.Builder()
                         .baseUrl(IPADRESS)
                         .addConverterFactory(GsonConverterFactory.create())
@@ -82,25 +78,21 @@ public class Login_Activity extends AppCompatActivity {
                 RetrofitAPI retrofitAPI = retrofit.create(RetrofitAPI.class);
 
 
-
-
                 Call<User_Model> call = retrofitAPI.login(user_login);
                 call.enqueue(new Callback<User_Model>() {
                     @Override
                     public void onResponse(Call<User_Model> call, Response<User_Model> response) {
 
                         Log.e("response.code() + ", response.message());
-                        Log.e("response.code() + ", response.code()+"");
+                        Log.e("response.code() + ", response.code() + "");
 
-                        if(response.code()==500)
-                        {
+                        if (response.code() == 500) {
                             Toast.makeText(getApplicationContext(), "아이디가 없습니다.", Toast.LENGTH_SHORT).show();
                             Log.e("아이디가 없습니다.", "아이디가 없습니다.");
+                            return ;
                         }
 
                         if (response.isSuccessful()) {
-
-
 
 
                             User_Model login_user = response.body();
@@ -111,11 +103,11 @@ public class Login_Activity extends AppCompatActivity {
                             SharedPreferences.Editor editor = sharedPref.edit();
 
                             editor.putString("user_login_id", user_login_id);
-                            Call<User_Model> call2 =retrofitAPI.findByUser_login_id(user_login_id);
+                            Call<User_Model> call2 = retrofitAPI.findByUser_login_id(user_login_id);
                             call2.enqueue(new Callback<User_Model>() {
                                 @Override
                                 public void onResponse(Call<User_Model> call, Response<User_Model> response) {
-                                    user_id= response.body().getId();
+                                    user_id = response.body().getId();
                                     editor.putLong("user_id", user_id);
                                     editor.apply();
                                 }
@@ -128,35 +120,24 @@ public class Login_Activity extends AppCompatActivity {
                             });
 
 
-
-
-
                             Intent intent = new Intent(Login_Activity.this, MainActivity.class);
                             startActivity(intent);
 
                         }
-                        else if(response.code() == 400){
-                            Log.d(TAG, "ID: " + response.code());
-                            //비번이 틀립니다
-                            Toast.makeText(getApplicationContext(), "비번이 틀립니다", Toast.LENGTH_LONG).show();
 
-                            return;
-                        }
                     }
 
                     @Override
                     public void onFailure(Call<User_Model> call, Throwable t) {
 
-//                        Toast.makeText(getApplicationContext(), "비번이 틀립니다", Toast.LENGTH_LONG).show();
-                        Log.d(TAG, "에러메세지: " + t.getMessage());
+                        Toast.makeText(getApplicationContext(), "비번이 틀립니다", Toast.LENGTH_LONG).show();
+                        Log.d(TAG, "비번이 틀립니다: " + t.getMessage());
                     }
                 });
 
 
-
             }
         });
-
 
 
 //        회원가입 으로 이동
@@ -169,17 +150,8 @@ public class Login_Activity extends AppCompatActivity {
         });
 
 
-
-
-
-
-
-
     }
 }
-
-
-
 
 
 //   <meta-data

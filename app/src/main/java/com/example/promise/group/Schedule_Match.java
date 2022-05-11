@@ -110,14 +110,15 @@ public class Schedule_Match extends AppCompatActivity {
                         }
 
                         for (int i = 0; i < matched_schedule_array.length; i++) {
-                            matched_schedule_array[i] = 0L;
+                            matched_schedule_array[i] = 1L;
                         }
 
+                        Log.e("color_data_size()", color_data_list.size() + "");
 //                            배열의 교집합 찾기(https://tinyurl.com/yyuo9wty) -> 교집합 스케줄 만들기 -> 뿌리기
                         for (int i = 0; i < color_data_list.size(); i++) {
                             if (i == color_data_list.size() - 1) continue;
                             for (int j = 1; j < color_data.length; j++) {
-                                color_data_list.get(i)[j] = color_data_list.get(i)[j] & color_data_list.get(i + 1)[j];
+                                color_data_list.get(i)[j] = color_data_list.get(i)[j] & color_data_list.get(i + 1)[j] & matched_schedule_array[j];
                                 matched_schedule_array[j] = color_data_list.get(i)[j];
                             }
                         }

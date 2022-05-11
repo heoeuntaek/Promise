@@ -89,7 +89,7 @@ public class Participating_Group extends AppCompatActivity {
                     @Override
                     public void onFailure(Call<User_group_Model> call, Throwable t) {
                         Log.e("이미 그룹에 참여하였습니다.", "body null");
-                        Toast.makeText(getApplicationContext(), "이미 그룹에 참여하였거나", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "이미 그룹에 참여하였습니다.", Toast.LENGTH_SHORT).show();
 
                     }
                 });
