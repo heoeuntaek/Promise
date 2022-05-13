@@ -81,7 +81,7 @@ public class Get_Schedule extends AppCompatActivity {
             textview_match.setVisibility(View.VISIBLE);
         }
 
-        if (save == 2) { //스케줄매칭에서 온 경우
+        if (save == 2) { //스케줄에서 온 경우 삭제버튼
             btn_delete.setVisibility(View.VISIBLE);
         }
 
@@ -163,7 +163,7 @@ public class Get_Schedule extends AppCompatActivity {
 
         Log.e("schedule_id", schedule_id.toString());
 
-
+//스케줄에서 온 경우
         if (save != 3) {
             Call<Schedule_Model> call = retrofitAPI.GetSchedule(user_id, schedule_id);
             call.enqueue(new Callback<Schedule_Model>() {
@@ -219,7 +219,7 @@ public class Get_Schedule extends AppCompatActivity {
                 }
             });
 
-
+//        스케줄매칭에서 온 경우
         } else if (save == 3) {
             Call<Group_Model> call = retrofitAPI.GetMatchedSchedule(group_id);
             call.enqueue(new Callback<Group_Model>() {

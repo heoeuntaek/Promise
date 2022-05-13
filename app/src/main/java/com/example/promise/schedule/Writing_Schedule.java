@@ -70,7 +70,6 @@ public class Writing_Schedule extends AppCompatActivity {
             int getID = getResources().getIdentifier("text" + i, "id", "com.example.promise");
             textViews[i] = (TextView) findViewById(getID); // tv[i]에 text1, text2, text3, text4,
         }
-        TextView[] nullText = textViews;
 
 
         // color_data 초기화
