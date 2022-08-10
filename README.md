@@ -1,7 +1,8 @@
 # Promise
 
 # Main
-![스크린샷(161)](https://user-images.githubusercontent.com/86188446/183822410-1c56166e-cdb7-4d83-ba4e-581fdaff7289.png
+![스크린샷(161)](https://user-images.githubusercontent.com/86188446/183825784-99da15fd-97a9-472c-824d-82ff7e74a43e.png)
+
 
 # Creating group
 ![스크린샷(157)](https://user-images.githubusercontent.com/86188446/183825388-05d97ec9-3769-4cc9-a1aa-3caa3613d551.png)
