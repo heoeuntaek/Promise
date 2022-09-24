@@ -35,4 +35,4 @@ You can share your schedule by matching schedule button here.
 
 # Result
 ![스크린샷(167)](https://user-images.githubusercontent.com/86188446/183825709-6084ebab-eed1-4308-8bd8-1dd41e5cbc3c.png)
-If you touch matching schedule button, the timetable is recommended.
+If you touch matching schedule button, the timetable that is fit for every group member is recommended.
