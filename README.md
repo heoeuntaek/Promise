@@ -3,6 +3,7 @@ This is an android app can help to adjust people's meeting time.
 
 # Main
 ![스크린샷(161)](https://user-images.githubusercontent.com/86188446/183825784-99da15fd-97a9-472c-824d-82ff7e74a43e.png)
+THis is main page
 
 
 # Creating group
